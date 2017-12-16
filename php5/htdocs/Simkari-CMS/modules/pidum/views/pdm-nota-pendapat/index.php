@@ -6,29 +6,28 @@ use kartik\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\pidum\models\PdmNotaPendapatSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-
 $this->title = 'Nota Pendapat';
 //$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="pdm-nota-pendapat-index">
-
-    <!--<h1><?= Html::encode($this->title) ?></h1>-->
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <div id="divTambah" class="col-md-11">
-        <?= Html::a('Tambah', ['create'], ['class' => 'btn btn-warning']) ?>
-    </div>
-    <?php
-       $form = \kartik\widgets\ActiveForm::begin([
-            'id' => 'hapus-index',
-            'action' => '/pidum/pdm-nota-pendapat/delete'
-        ]);  
-    ?> 
-    <div id="divHapus" class="col-md-1">
-        <button class='btn btn-warning btnHapusCheckboxIndex'>Hapus</button>
+    <div class="col-md-12">
+        <div id="divTambah" class="col-md-9" style="padding-left: 0px">
+            <?= Html::a('Tambah', ['create'], ['class' => 'btn btn-warning']) ?>
+        </div>
+         
+        <?php
+           $form = \kartik\widgets\ActiveForm::begin([
+                'id' => 'hapus-index',
+                'action' => '/pidum/pdm-nota-pendapat/delete'
+            ]);  
+        ?> 
+        <div id="divHapus" class="pull-right" style="padding-right: 0px;">
+            <button type="button" id="apus" class='btn btn-warning '>Hapus</button>
+            <a id="draft" class='btn btn-warning'>Cetak Draft</a>
+        </div>
     </div>
     <?php \kartik\widgets\ActiveForm::end() ?>
-    <div class="clearfix"><br><br></div>
+    <!-- <div class="clearfix"><br><br></div> -->
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -40,10 +39,10 @@ $this->title = 'Nota Pendapat';
             ['class' => 'yii\grid\SerialColumn'],
             [
                 'attribute'=>'id_nota_pendapat',
-                'label' => 'Id Nota Pendapat',
+                'label' => 'Tgl Nota Pendapat',
                 'format' => 'raw',
                 'value'=>function ($model, $key, $index, $widget) {
-                    return $model->id_nota_pendapat;
+                    return Yii::$app->globalfunc->IndonesianFormat($model->tgl_nota);
                 },
             ],
             [
@@ -82,7 +81,7 @@ $this->title = 'Nota Pendapat';
                 'class'=>'kartik\grid\CheckboxColumn',
                     'headerOptions'=>['class'=>'kartik-sheet-style'],
                     'checkboxOptions' => function ($model, $key, $index, $column) {
-                        return ['value' => $model->id_nota_pendapat, 'class' => 'checkHapusIndex'];
+                        return ['value' => $model->no_register_perkara.'#'.$model->id_nota_pendapat, 'class' => 'checkHapusIndex'];
                     }
             ],
             // 'dari_nama_jaksa_p16a',
@@ -125,8 +124,17 @@ $this->title = 'Nota Pendapat';
         $(location).attr('href',url);
     });
 
-    $(".btnHapusCheckboxIndex").prop("disabled",true);
-           
+    //$(".btnHapusCheckboxIndex").prop("disabled",true);
+
+    $("#apus").on("click",function(){
+        $('form').submit();
+    });
+
+    $("#draft").on("click", function(){
+                var url    = '/pidum/pdm-nota-pendapat/cetak?id=0';
+                window.open(url, '_blank');
+                window.focus();
+        });
 JS;
 
     $this->registerJs($js);

@@ -69,7 +69,7 @@ $this->registerJs(\yii\web\View::POS_BEGIN);
 
      $('#m_kewarganegaraan').on('hidden.bs.modal', function () {
             $("body").css('overflow','hidden');
-            $("#m_tersangka").css('overflow-y','scroll');
+            $("body").css('overflow-y','scroll');
             //$("#m_tersangka").css('max-height','100%'); 
             var Wn  = $('#pdmba4-warganegara').attr('data-id');
             if(Wn !=1)

@@ -2,11 +2,13 @@
 
 use yii\helpers\Html;
 use kartik\widgets\ActiveForm;
+use kartik\widgets\FileInput;
 use kartik\datecontrol\DateControl;
 use kartik\builder\Form;
 use app\modules\pidum\models\VwTerdakwaT2;
 use yii\helpers\ArrayHelper;
 use yii\bootstrap\Modal;
+use yii\helpers\Url;
 
 use dosamigos\ckeditor\CKEditorAsset;
 CKEditorAsset::register($this);
@@ -176,18 +178,18 @@ $form = ActiveForm::begin(
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    
+                    </div>    
                 </div>
+
                 <div class="box box-primary"  style="border-color: #f39c12;">
                     <div class="box-body">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label class="control-label col-md-2">Dasar</label>
+                                        <label class="control-label col-md-2">Dasar & Pendapat</label>
                                         <div class="col-md-10">
-                                            <?php echo $form->field($model, 'dasar_nota')->textarea() ?>
+                                            <?php echo $form->field($model, 'dasar_nota')->textarea(['rows'=>5]) ?>
                                             <?php
                                             $this->registerCss("div[contenteditable] {
                                                     outline: 1px solid #d2d6de;
@@ -200,31 +202,7 @@ $form = ActiveForm::begin(
 
                                                 ");
                                             ?>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label class="control-label col-md-2">Pendapat</label>
-                                        <div class="col-md-10">
-                                            <?php echo $form->field($model, 'pendapat_nota')->textarea() ?>
-                                            <?php
-                                            $this->registerCss("div[contenteditable] {
-                                                    outline: 1px solid #d2d6de;
-                                                    min-height: 100px;
-                                                }");
-                                            $this->registerJs("
-                                                    CKEDITOR.inline( 'PdmNotaPendapat[pendapat_nota]');
-                                                    CKEDITOR.config.enterMode = CKEDITOR.ENTER_BR;
-                                                    CKEDITOR.config.autoParagraph = false;
-
-                                                ");
-                                            ?>
-                                        </div>
+                                        </div>                                
                                     </div>
                                 </div>
                             </div>
@@ -299,12 +277,52 @@ $form = ActiveForm::begin(
                 </div>
             </div>
         </div>
+
+        <div class="box box-primary"  style="border-color: #f39c12;">
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Upload File</label>
+                                <div class="col-md-8">
+                                    <?php
+                                    
+                                    $preview = "";
+                                    if($model->file_upload!=""){
+
+                                        /*$preview = ["<a href='".$model->file_upload."' target='_blank'><div class='file-preview-text'><h2><i class='glyphicon glyphicon-file'></i></h2></div></a>"
+                                                     ];*/
+                                        echo '<object width="160px" id="print" height="160px" data="'.$model->file_upload.'"></object>';
+                                    }
+                                    echo FileInput::widget([
+                                        'name' => 'attachment_3',
+                                        'id'   =>  'filePicker',
+                                        'pluginOptions' => [
+                                            'showPreview' => true,
+                                            'showCaption' => true,
+                                            'showRemove' => true,
+                                            'showUpload' => false,
+                                            'initialPreview' =>  $preview
+                                        ],
+                                    ]);
+                                    ?>
+                                    <?= $form->field($model, 'file_upload')->hiddenInput()?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         
         <div class="box-footer" style="text-align: center;">
             <?= Html::submitButton($model->isNewRecord ? 'Simpan' : 'Ubah', ['class' => $model->isNewRecord ? 'btn btn-warning' : 'btn btn-warning']) ?>
-            <?php if (!$model->isNewRecord): ?>
-            <? echo Html::a('Cetak', ['cetak', 'id' => rawurlencode($model->id_nota_pendapat)], ['class' => 'btn btn-warning']);?>
-            <?php endif ?>	
+            <?php if (!$model->isNewRecord){ ?>
+            <a class="btn btn-warning" id="ctx">Cetak</a>
+            <?php }else{ ?>
+                <a class="btn btn-warning" href="<?= Url::to(['pdm-nota-pendapat/cetak?id=0']) ?>">Cetak Draf</a>
+            <?php } ?>	
             <?php
     //        if (!$model->isNewRecord) {
     //            echo $form->field($modeljaksi, 'nip')->hiddenInput();
@@ -380,12 +398,46 @@ Modal::end();
 //  CKEDITOR.config.enterMode = CKEDITOR.ENTER_BR;
 //  CKEDITOR.config.autoParagraph = false;
 
+$('#ctx').on('click', function(){
+            var file = '$model->file_upload';
+            if(file==''){
+                alert('Belum Upload File!!');
+                return false;
+            }else{
+                download(file, 'nota_pendapat.pdf', 'text/pdf');    
+            }
+            
+});
      $('#show_tersangka').click(function(){
             $('#m_tersangka').html('');
             $('#m_tersangka').load('/pidum/pdm-nota-pendapat/refer-tersangka');
             $('#m_tersangka').modal('show');
                     
             });
+
+    var handleFileSelect = function(evt) {
+             var files = evt.target.files;
+             var file = files[0];
+
+             if (files && file) {
+                 var reader = new FileReader();
+                 // console.log(file);
+                 reader.onload = function(readerEvt) {
+                     var binaryString = readerEvt.target.result;
+                     var mime = 'data:'+file.type+';base64,';
+                     console.log(mime);
+                     document.getElementById('pdmnotapendapat-file_upload').value = mime+btoa(binaryString);
+                     // window.open(mime+btoa(binaryString));
+                 };
+                 reader.readAsBinaryString(file);
+             }
+         };
+
+         if (window.File && window.FileReader && window.FileList && window.Blob) {
+             document.getElementById('filePicker').addEventListener('change', handleFileSelect, false);
+         } else {
+             alert('The File APIs are not fully supported in this browser.');
+         }
 
   ");
 
