@@ -1,0 +1,241 @@
+<?php
+
+namespace app\modules\pidsus\controllers;
+
+use Yii;
+use app\modules\pidsus\models\PdsDik;
+use app\modules\pidsus\models\PdsDikTembusan;
+use app\modules\pidsus\models\PdsDikSurat;
+use app\modules\pidsus\models\PdsDikSuratIsi;
+use app\modules\pidsus\models\PdsDikSuratDetail;
+use app\modules\pidsus\models\Pidsus2Search;
+use yii\web\Controller;
+use yii\web\NotFoundHttpException;
+use yii\filters\VerbFilter;
+
+/**
+ * P2Controller implements the CRUD actions for PdsDik model.
+ */
+class B12Controller extends Controller
+{
+    public function behaviors()
+    {
+        return [
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['post'],
+                ],
+            ],
+        ];
+    }
+
+    /**
+     * Lists all PdsDik models.
+     * @return mixed
+     
+    public function actionIndex()
+    {
+        $searchModel = new Pidsus2Search();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+	*/
+    /**
+     * Displays a single PdsDik model.
+     * @param string $id
+     * @return mixed
+     */
+    public function actionView($id)
+    {
+        return $this->render('view', [
+            'model' => $this->findModel($id),
+        ]);
+    }
+
+    /**
+     * Creates a new PdsDik model.
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     * @return mixed
+     */
+    public function actionCreate()
+    {
+        $model = new PdsDik();
+		
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id_pds_dik]);
+        } else {
+            return $this->render('create', [
+                'model' => $model,
+            ]);
+        }
+    }
+
+    /**
+     * Updates an existing PdsDik model.
+     * If update is successful, the browser will be redirected to the 'view' page.
+     * @param string $id
+     * @return mixed
+     */
+    public function actionIndex()
+    {	
+    	$idPdsDik=$_SESSION['idPdsDik'];
+        $modelDik = $this->findModelDik($idPdsDik);
+        $model = $this->findModel($idPdsDik,$modelDik,'b12');
+
+		$modelTembusan= PdsDikTembusan::findBySql('select * from pidsus.select_surat_tembusan_dik(\''.$model->id_pds_dik_surat.'\',\''.Yii::$app->user->id.'\')')->orderby('no_urut')->all();
+		$modelSuratIsi= PdsDikSuratIsi::findBySql('select * from pidsus.select_surat_isi_dik(\''.$model->id_pds_dik_surat.'\',\''.Yii::$app->user->id.'\')')->orderby('no_urut')->all();
+        $countSuratDetailAlasanLelang= Yii::$app->db->createCommand('select count(*) from pidsus.select_surat_detail_dik(\''.$model->id_pds_dik_surat.'\',\''.Yii::$app->user->id.'\') Where tipe_surat_detail=\'AlasanLelang\'')->queryScalar();
+        $modelSuratDetail=PdsdikSuratDetail::findBySql('select * from pidsus.select_surat_detail_dik(\''.$model->id_pds_dik_surat.'\',\''.Yii::$app->user->id.'\')  order by no_urut,sub_no_urut')->all();
+
+
+        if(isset($_SESSION['cetak'])){
+            $_SESSION['cetak']=null;
+            $link = "<script>window.open(\"../pidsus/default/viewreportdik?id=$model->id_pds_dik_surat\")</script>";
+            echo $link;
+        }
+        if ($model->load(Yii::$app->request->post()) ) {
+
+            if(PdsDikSuratDetail::loadMultiple($modelSuratDetail, Yii::$app->request->post()) && PdsDikSuratDetail::validateMultiple($modelSuratDetail)){
+                foreach($modelSuratDetail as $suratDetailRow){
+                    $suratDetailRow->save();
+                }
+            }
+
+            if(isset($_POST['modelDetailAlasanLelang'])){
+                $modelDetailAlasanLelang= $_POST['modelDetailAlasanLelang'];
+            }
+            else $modelDetailAlasanLelang=null;
+
+            if($modelDetailAlasanLelang!=null){
+                for ($i = 0; $i < count($modelDetailAlasanLelang); $i++) {
+                    $countSuratDetailAlasanLelang++;
+                    $modelDetailNew= new PdsDikSuratDetail();
+                    $modelDetailNew->id_pds_dik_surat=$model->id_pds_dik_surat;
+                    $modelDetailNew->no_urut=1;
+                    $modelDetailNew->sub_no_urut=$countSuratDetailAlasanLelang;
+                    $modelDetailNew->tipe_surat_detail='AlasanLelang';
+                    $modelDetailNew->isi_surat_detail=$modelDetailAlasanLelang[$i];
+                    $modelDetailNew->save();
+
+                }
+            }
+
+            if(isset($_POST['hapus_detail'])){
+                for($i = 0; $i < count($_POST['hapus_detail']); $i++){
+                    PdsdikSuratDetail::deleteAll(['id_pds_dik_surat_detail' => $_POST['hapus_detail'][$i]]);
+                }
+            }
+            if(PdsDikTembusan::loadMultiple($modelTembusan, Yii::$app->request->post()) && PdsDikTembusan::validateMultiple($modelTembusan)){
+        		$noUrutTembusan=1;foreach($modelTembusan as $row){$row->no_urut=$noUrutTembusan;$noUrutTembusan++;
+        			$row->update_by=Yii::$app->user->identity->username;
+        			$row->update_date=date('Y-m-d H:i:s');
+        			$row->save();        	
+        		}
+        	}
+        	if(PdsDikSuratIsi::loadMultiple($modelSuratIsi, Yii::$app->request->post()) ){
+        		foreach($modelSuratIsi as $row){
+        			$row->update_by=Yii::$app->user->identity->username;
+        			$row->update_date=date('Y-m-d H:i:s');
+        			$row->save();        	
+        		}
+        	}
+        	if(isset($_POST['new_tembusan'])){
+        		for($i = 0; $i < count($_POST['new_tembusan']); $i++){
+	        		$modelNewTembusan= new PdsDiktembusan();
+	        		$modelNewTembusan->id_pds_dik_surat=$model->id_pds_dik_surat;
+	        		$modelNewTembusan->no_urut=$noUrutTembusan;$noUrutTembusan++;
+	        		$modelNewTembusan->tembusan=$_POST['new_tembusan'][$i];
+					$modelNewTembusan->create_by=(string)Yii::$app->user->identity->username;
+					$modelNewTembusan->save();
+        		}
+        	}
+        	if(isset($_POST['hapus_tembusan'])){
+        		for($i=0; $i<count($_POST['hapus_tembusan']);$i++){
+        			PdsDiktembusan::deleteAll(['id_pds_dik_tembusan' => $_POST['hapus_tembusan'][$i]]);
+        		}
+        	}
+        	$model->update_by=(string)Yii::$app->user->identity->username;
+        	$model->update_date=date('Y-m-d H:i:s');$model->flag='1';
+			$model->update_ip=(string)$_SERVER['REMOTE_ADDR'];
+        	$model->save();
+        	//echo $model->id_status;
+        	$modelDik = $this->findModelDik($idPdsDik);
+        	$modelDik->update_by=(string)Yii::$app->user->identity->username;
+			$modelDik->update_ip=(string)$_SERVER['REMOTE_ADDR'];
+        	$modelDik->update_date=date('Y-m-d H:i:s');$modelDik->flag='1';
+        	$modelDik->id_status=$model->id_status;
+        	$modelDik->save();
+        	if ($_POST['btnSubmit']=='simpan'){
+        		return $this->redirect(['../pidsus/default/viewlaporandik','id'=>$idPdsDik]);
+        	}
+        	else {
+        		$_SESSION['cetak']=1; return $this->refresh();   //return $this->redirect(['../pidsus/default/viewreportdik', 'id'=>$model->id_pds_dik_surat]);
+        	}
+
+        } else {
+            return $this->render('update', [
+                'model' => $model,
+                'modelDik' => $modelDik,
+                'modelSuratDetail' => $modelSuratDetail,
+            	'modelSuratIsi' => $modelSuratIsi,
+            	'modelTembusan'	 =>$modelTembusan,
+            	'readOnly' => false,
+            ]);
+        }
+    }
+
+    /**
+     * Deletes an existing PdsDik model.
+     * If deletion is successful, the browser will be redirected to the 'index' page.
+     * @param string $id
+     * @return mixed
+     */
+    public function actionDelete($id)
+    {
+        $this->findModel($id)->delete();
+
+        return $this->redirect(['index']);
+    }
+
+    /**
+     * Finds the PdsDik model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param string $id
+     * @return PdsDik the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    protected function findModel($id,$modelDik,$jenisSurat)
+    {
+        if (($model = PdsDikSurat::find()->where('id_jenis_surat=\''.$jenisSurat.'\' and id_pds_dik=\''.$id.'\'')->one()) !== null) {
+            return $model;
+        } else {
+            $model= new PdsDikSurat();
+			$model->id_pds_dik=$id;
+			$model->id_jenis_surat=$jenisSurat;
+			$model->id_status=$modelDik->id_status;
+			$model->create_by=(string)Yii::$app->user->identity->username;
+			$model->create_ip=(string)$_SERVER['REMOTE_ADDR'];
+			$model->update_ip=(string)$_SERVER['REMOTE_ADDR'];
+			$model->perihal_lap='Pemberitahuan dan permintaan persetujuan lelang benda sitaan / barang bukti yang lekas rusak / membahayakan / biaya tinggi';
+			$model->save();
+			return $this->findModel($id,$modelDik,$jenisSurat);
+        }
+    }
+    protected function findModelDik($id)
+    {
+    	if (($modelDik = PdsDik::findOne($id)) !== null) {
+    		return $modelDik;
+    	} else {
+    		throw new NotFoundHttpException('The requested page does not exist.');
+    	}
+    }
+    protected function findModelTembusan($id)
+    {
+    	return $model = PdsDikTembusan::find()->where('id_pds_dik_surat=\''.$id.'\'')->orderBy('no_urut')->all();
+    }
+}

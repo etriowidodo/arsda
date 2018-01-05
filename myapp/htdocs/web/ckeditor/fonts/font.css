@@ -1,0 +1,14 @@
+@font-face {font-family: "Calibri";
+    src: url("../fonts/f97dc64b09d20d2583145766af466d93.eot");
+    src: url("../fonts/f97dc64b09d20d2583145766af466d93.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/f97dc64b09d20d2583145766af466d93.woff2") format("woff2"),
+    url("../fonts/f97dc64b09d20d2583145766af466d93.woff") format("woff"),
+    url("../fonts/f97dc64b09d20d2583145766af466d93.ttf") format("truetype"),
+    url("../fonts/f97dc64b09d20d2583145766af466d93.svg#Calibri") format("svg");
+}
+@font-face {font-family: "Trebuchet MS";
+    src: url("../fonts/trebuc.ttf") format("truetype"),
+    url("../fonts/trebucbd.ttf") format("truetype"),
+    url("../fonts/trebucbi.ttf") format("truetype"),
+    url("../fonts/trebucit.ttf") format("truetype"),
+}

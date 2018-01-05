@@ -1,0 +1,49 @@
+with tbl_perpanjangan_tahan as (
+	select a.no_register_perkara, a.tgl_ba4, a.no_urut_tersangka, c.id_tersangka, min(c.tgl_mulai) as tgl_mulai, 
+	max(c.tgl_selesai) as tgl_selesai
+	from pidum.pdm_ba4_tersangka a 
+	join pidum.pdm_t7 b on a.no_register_perkara = b.no_register_perkara and a.tgl_ba4 = b.tgl_ba4 
+		and a.no_urut_tersangka = b.no_urut_tersangka and b.tindakan_status = 1
+	join pidum.pdm_t6 c on b.no_register_perkara = c.no_register_perkara and b.no_reg_tahanan_jaksa = c.id_tersangka 
+	group by a.no_register_perkara, a.tgl_ba4, a.no_urut_tersangka, c.id_tersangka 
+), tbl_pengalihan_tahan as (
+	select a.no_register_perkara, a.tgl_ba4, a.no_urut_tersangka, c.no_reg_tahanan_jaksa, min(c.tgl_mulai) as tgl_mulai, 
+	max(c.tgl_selesai) as tgl_selesai
+	from pidum.pdm_ba4_tersangka a
+	join pidum.pdm_t7 b on a.no_register_perkara = b.no_register_perkara and a.tgl_ba4 = b.tgl_ba4 
+		and a.no_urut_tersangka = b.no_urut_tersangka and b.tindakan_status = 1
+	join pidum.pdm_t7 c on b.no_register_perkara = c.no_register_perkara and b.tgl_ba4 = c.tgl_ba4 
+		and b.no_urut_tersangka = c.no_urut_tersangka and b.no_reg_tahanan_jaksa = c.no_reg_tahanan_jaksa
+	where c.tindakan_status = 3
+	group by a.no_register_perkara, a.tgl_ba4, a.no_urut_tersangka, c.no_reg_tahanan_jaksa
+), tbl_pencabutan_tangguh as (
+	select a.no_register_perkara, a.tgl_ba4, a.no_urut_tersangka, b.no_surat_t7, max(c.tgl_penangguhan) as tgl_pencabutan 
+	from pidum.pdm_ba4_tersangka a
+	join pidum.pdm_t7 b on a.no_register_perkara = b.no_register_perkara and a.tgl_ba4 = b.tgl_ba4 
+		and a.no_urut_tersangka = b.no_urut_tersangka and b.tindakan_status = 1
+	join pidum.pdm_t8 c on b.no_register_perkara = c.no_register_perkara and b.tgl_ba4 = c.tgl_ba4 
+		and b.no_urut_tersangka = c.id_tersangka and b.no_surat_t7 = c.no_surat_t7 
+	where c.id_ms_status_t8 = 3
+	group by a.no_register_perkara, a.tgl_ba4, a.no_urut_tersangka, b.no_surat_t7 
+)
+select a.no_register_perkara, a.nama as nama_tersangka, a.tmpt_lahir, a.umur, a.tgl_lahir, c.nama as jenis_kelamin, d.nama as kewarganegaraan, a.alamat, 
+e.nama as jenis_agama, a.pekerjaan, f.nama as jenis_pendidikan, b.id_ms_loktahanan, g.nama as lokasi_tahanan, b.tgl_mulai, b.tgl_selesai, 
+h.tgl_mulai as tgl_mulai_perpanjangan, h.tgl_selesai as tgl_selesai_perpanjangan, 
+i.tgl_mulai as tgl_mulai_pengalihan, i.tgl_selesai as tgl_selesai_pengalihan, k.tgl_pencabutan, 
+a2.dikeluarkan, a2.tgl_dikeluarkan, a2.catatan, a2.id_penandatangan, a2.nama, a2.pangkat, a2.jabatan 
+from pidum.pdm_ba4_tersangka a
+join pidum.pdm_t7 b on a.no_register_perkara = b.no_register_perkara and a.tgl_ba4 = b.tgl_ba4 
+	and a.no_urut_tersangka = b.no_urut_tersangka and b.tindakan_status = 1
+join pidum.ms_loktahanan g on b.id_ms_loktahanan = g.id_loktahanan 
+join pidum.pdm_p29 a1 on a.no_register_perkara = a1.no_register_perkara 
+join pidum.pdm_p30 a2 on a1.no_register_perkara = a2.no_register_perkara 
+left join ms_jkl c on a.id_jkl = c.id_jkl 
+left join ms_warganegara d on a.warganegara = d.id 
+left join ms_agama e on a.id_agama = e.id_agama 
+left join ms_pendidikan f on a.id_pendidikan = f.id_pendidikan 
+left join tbl_perpanjangan_tahan h on a.no_register_perkara = h.no_register_perkara and a.tgl_ba4 = h.tgl_ba4 
+	and a.no_urut_tersangka = h.no_urut_tersangka 
+left join tbl_pengalihan_tahan i on a.no_register_perkara = i.no_register_perkara and a.tgl_ba4 = i.tgl_ba4 
+	and a.no_urut_tersangka = i.no_urut_tersangka 
+left join tbl_pencabutan_tangguh k on a.no_register_perkara = k.no_register_perkara and a.tgl_ba4 = k.tgl_ba4 
+	and a.no_urut_tersangka = k.no_urut_tersangka 

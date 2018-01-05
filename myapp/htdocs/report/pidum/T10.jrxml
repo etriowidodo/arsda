@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="T10" language="groovy" pageWidth="800" pageHeight="1200" columnWidth="760" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="05cd95e1-4f5b-4ca4-bbd6-36a23184afdf">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="459"/>
+	<subDataset name="dataset1" uuid="285784e2-47aa-4742-a6e8-1fa4d2ec9c58">
+		<parameter name="idperkara" class="java.lang.String"/>
+		<queryString>
+			<![CDATA[select tembusan.keterangan
+from pidum.pdm_t10 t10
+left join pidum.pdm_tembusan tembusan ON ( tembusan.id_table =t10.id_t10)
+where t10.id_perkara=$P{idperkara}
+and tembusan.kode_table='T-10'
+]]>
+		</queryString>
+		<field name="keterangan" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="id_perkara" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{id_perkara}]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select
+
+a.no_surat,
+a.keperluan,
+a.jam,
+a.tgl_kunjungan,
+a.nama as nama_diberikan,
+a.alamat,
+a.pekerjaan,
+a.hubungan,
+a.id_penandatangan,
+
+b.nama,
+b.tmpt_lahir,
+b.tgl_lahir,
+b.warganegara,
+b.alamat as tmpt_tinggal,
+
+
+ c.nama as agama,
+ d.nama as jenis_kelamin,
+ e.nama as nama_jaksa,
+ e.nip,
+ e.pangkat,
+ f.nama as pendidikan,
+ h.inst_nama,
+ i.no_reg_tahanan
+
+ from pidum.pdm_t10 a
+
+inner join pidum.ms_tersangka b ON a.id_perkara = b.id_perkara
+inner join public.ms_agama c ON b.id_agama = c.id_agama
+inner join public.ms_jkl d ON b.id_jkl = d.id_jkl
+inner join pidum.pdm_jaksa_saksi e ON a.id_perkara = e.id_perkara
+inner join public.ms_pendidikan f ON b.id_pendidikan = f.id_pendidikan
+inner join pidum.pdm_spdp g ON a.id_perkara = g.id_perkara
+inner join kepegawaian.kp_inst_satker h ON g.wilayah_kerja = h.inst_satkerkd
+inner join pidum.pdm_ba15 i ON a.id_perkara = i.id_perkara]]>
+	</queryString>
+	<field name="no_surat" class="java.lang.String"/>
+	<field name="keperluan" class="java.lang.String"/>
+	<field name="jam" class="java.sql.Time"/>
+	<field name="tgl_kunjungan" class="java.sql.Date"/>
+	<field name="nama_diberikan" class="java.lang.String"/>
+	<field name="alamat" class="java.lang.String"/>
+	<field name="pekerjaan" class="java.lang.String"/>
+	<field name="hubungan" class="java.lang.String"/>
+	<field name="id_penandatangan" class="java.lang.String"/>
+	<field name="nama" class="java.lang.String"/>
+	<field name="tmpt_lahir" class="java.lang.String"/>
+	<field name="tgl_lahir" class="java.sql.Date"/>
+	<field name="warganegara" class="java.lang.String"/>
+	<field name="tmpt_tinggal" class="java.lang.String"/>
+	<field name="agama" class="java.lang.String"/>
+	<field name="jenis_kelamin" class="java.lang.String"/>
+	<field name="nama_jaksa" class="java.lang.String"/>
+	<field name="nip" class="java.lang.String"/>
+	<field name="pangkat" class="java.lang.String"/>
+	<field name="pendidikan" class="java.lang.String"/>
+	<field name="inst_nama" class="java.lang.String"/>
+	<field name="no_reg_tahanan" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="90" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="c0777423-420c-47d6-957c-5427410366d6" x="285" y="31" width="257" height="20"/>
+				<textElement textAlignment="Center">
+					<font isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[SURAT IZIN MENGUNJUNGI TAHANAN ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c3a87944-f4eb-497d-add8-74e68e1e468d" x="319" y="53" width="46" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[NOMOR:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="c0243745-c7b8-4819-ba55-562436c40fb9" x="366" y="53" width="176" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{no_surat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="44ef32c6-4c84-4013-9b39-a6c0f48bec0d" x="6" y="4" width="243" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{inst_nama}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="872" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="2a9fbcd9-3f94-4e95-b944-3933624615ab" x="3" y="33" width="179" height="20"/>
+				<textElement/>
+				<text><![CDATA[Di berikan kepada:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="233a2034-d78c-4570-8cdd-3406b95c098d" x="60" y="64" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Nama]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c98799c4-0b29-4a11-8811-c2a743f7d8fe" x="59" y="94" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Alamat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="40685cda-c088-432c-9bbc-67942060f6a3" x="60" y="121" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Pekerjaan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f9a00e4f-ae3f-4708-964f-2df98a14581c" x="60" y="153" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Hubungan ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a1bc2ea3-f306-4751-96c3-81f32f9866bf" x="6" y="190" width="176" height="20"/>
+				<textElement/>
+				<text><![CDATA[Untuk mengunjungi Tahanan:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="bffa0b87-07ab-4c82-997b-9f394e8cca9e" x="59" y="215" width="157" height="20"/>
+				<textElement/>
+				<text><![CDATA[Nama Lengkap]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="29660fde-04b0-41cb-b1ac-23bb70df87fb" x="59" y="243" width="157" height="20"/>
+				<textElement/>
+				<text><![CDATA[Tempat Lahir  ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ff3d3b22-ad3b-4f47-a9a4-8cb00e39c3d7" x="60" y="272" width="156" height="20"/>
+				<textElement/>
+				<text><![CDATA[Umur / Tanggal Lahir]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c5fd4a25-ca4d-4d47-a291-8f42506f46f5" x="60" y="296" width="156" height="20"/>
+				<textElement/>
+				<text><![CDATA[Jenis Kelamin ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="daf342bc-46ba-44c9-9490-8f4a40fd68d3" x="60" y="321" width="156" height="30"/>
+				<textElement/>
+				<text><![CDATA[Kebangsaan / kewarganegaraan ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="35e7bc8d-d87f-49ed-a790-a9e2009d1b79" x="60" y="354" width="156" height="20"/>
+				<textElement/>
+				<text><![CDATA[Tempat Tinggal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2ce20840-4b74-47ab-ba78-81d6a4227847" x="59" y="378" width="157" height="20"/>
+				<textElement/>
+				<text><![CDATA[Agama ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="abdd9912-6ccc-4eef-94f3-73b0585f5df7" x="60" y="402" width="156" height="20"/>
+				<textElement/>
+				<text><![CDATA[Pekerjaan ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="fc17333b-46d7-444d-8a8a-b29c7dfda2cc" x="59" y="426" width="157" height="20"/>
+				<textElement/>
+				<text><![CDATA[Pendidikan ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6797e770-6373-42ef-8b33-7f0101a6ce32" x="59" y="451" width="157" height="20"/>
+				<textElement/>
+				<text><![CDATA[Reg. Tahanan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="64be7d50-4460-4efd-a34c-2a998676c487" x="60" y="476" width="156" height="20"/>
+				<textElement/>
+				<text><![CDATA[Keperluan ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="32e5eb52-415d-422e-bf5a-c944dae3fe38" x="406" y="476" width="354" height="20"/>
+				<textElement/>
+				<text><![CDATA[Bertemu, mengirim pakaian, makanan, atau.....]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1a065f58-3742-46c3-8456-9a3bcab9267e" x="61" y="500" width="155" height="20"/>
+				<textElement/>
+				<text><![CDATA[izin berlaku ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="22c003bd-4abc-4964-a573-9a3a7477ff0a" x="249" y="500" width="45" height="20"/>
+				<textElement/>
+				<text><![CDATA[Jam]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1cc44b93-d997-414b-a3bb-a4f1c0c7c7b1" x="543" y="612" width="44" height="20"/>
+				<textElement/>
+				<text><![CDATA[Tanggal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="54b78b1d-b8f2-460e-b8ea-7debf5edbee0" x="556" y="719" width="158" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[(..................................)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="100c3c18-d44a-4b03-8e5b-117fc52f22ac" x="6" y="632" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Tembusan: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="bff802f4-c619-470d-bfe0-90e72f47809e" x="17" y="728" width="232" height="20"/>
+				<textElement/>
+				<text><![CDATA[1. Jaksa  Penyidik / penuntut Umum (AD HOC)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="60ec9f9b-7356-470b-b34b-96654a3e1b7f" x="19" y="752" width="230" height="20"/>
+				<textElement/>
+				<text><![CDATA[2. ...................................................................]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2abcfaf6-1616-4f93-a007-a5cdcfdacee4" x="19" y="778" width="230" height="20"/>
+				<textElement/>
+				<text><![CDATA[3. Arsip ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2611d709-65e3-4d52-ab0e-29b355038d0e" x="19" y="805" width="230" height="49"/>
+				<textElement/>
+				<text><![CDATA[*) Diisi Kejaksaan Tinggi / Negri.................. / penyidik AD HOC / Penuntut Umum AD HOC dalam perkara pelanggaran HAM berat]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="ffcc774c-7434-4b74-9233-0e144ba30a8b" x="295" y="215" width="308" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{nama}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="f0ed5ad0-5cfc-48b1-9a3e-488f6549b657" x="295" y="243" width="308" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tmpt_lahir}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="27e58cc8-90b5-43d2-9e8e-8a31513996ee" x="295" y="272" width="308" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tgl_lahir}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="3955af17-2879-43ee-897f-3b143ee87a63" x="295" y="296" width="308" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{jenis_kelamin}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="631dc98c-7559-4cb9-8ced-0caccfb4497b" x="295" y="331" width="308" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{warganegara}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="bbe0b4a4-9750-4339-8dc7-99ce189076c3" x="295" y="358" width="308" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tmpt_tinggal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="261e68e3-4d75-4c79-bf32-e16dd322fb3f" x="295" y="382" width="308" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{agama}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="f188f827-6bbe-4546-a6c6-94ab62dae54f" x="295" y="403" width="308" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{pekerjaan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="96fd42c5-0330-4b86-8439-62dc50104e37" x="295" y="426" width="308" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{pendidikan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="fc4e4ef0-0e0b-4a3c-90a6-d41763cb6454" x="295" y="476" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{keperluan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="99cbb762-f0a2-411d-88be-eca9e799fb0d" x="295" y="500" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{jam}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="737e117d-29cd-4f31-854e-2185b1b06c80" x="2" y="0" width="758" height="1"/>
+			</line>
+			<textField>
+				<reportElement uuid="22d806f3-d2bb-42ad-9b6e-e6b854da9d38" x="295" y="64" width="308" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{nama_diberikan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d023fa7b-ea6e-4343-b710-dbb1fb0cd7ce" x="295" y="94" width="308" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{alamat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="5ddcb7b2-a732-4176-8ddf-bb901828122e" x="295" y="121" width="308" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{pekerjaan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="bccb69f1-4244-4ac9-9218-6e2175ef9976" x="295" y="153" width="308" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{hubungan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="5b606cce-b225-4ed4-9810-9adb75588e87" x="556" y="739" width="158" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{id_penandatangan}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="7e952cca-bcb0-4207-9393-e73fd22ab84d" x="406" y="500" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Tanggal]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="0d26b849-b6ff-4a4c-bddb-696cd581f528" x="522" y="500" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tgl_kunjungan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="7ce10598-db97-413e-b7f3-c16cccb510cc" x="295" y="451" width="308" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{no_reg_tahanan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="031fece9-0873-4c0b-a9e8-b4e3df0dcd87" x="522" y="652" width="192" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{inst_nama}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement uuid="635f36f0-fd21-4907-9882-e56b613f6b95" x="19" y="652" width="166" height="50"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="dataset1" uuid="90eb2bf5-6376-4bff-8408-befb92547d0b">
+						<datasetParameter name="idperkara">
+							<datasetParameterExpression><![CDATA[$P{id_perkara}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="50" width="166">
+						<textField>
+							<reportElement uuid="2cedb92e-7470-42ad-a784-38165e8f1934" x="0" y="4" width="100" height="20"/>
+							<textElement/>
+							<textFieldExpression><![CDATA[$F{keterangan}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="24" splitType="Stretch"/>
+	</pageFooter>
+</jasperReport>

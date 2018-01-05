@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="19" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="952438e4-c805-4908-b7e7-8aaf0de0013a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="wilayah_kerja" uuid="d9ce53bc-40c9-45ac-8af5-317c0800804d">
+		<parameter name="wilayah_kerja" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[select inst_nama, inst_lokinst from kepegawaian.kp_inst_satker where inst_satkerkd =  $P{wilayah_kerja}]]>
+		</queryString>
+		<field name="inst_nama" class="java.lang.String"/>
+		<field name="inst_lokinst" class="java.lang.String"/>
+	</subDataset>
+	<subDataset name="nama_tersangka" uuid="48f79451-1f3b-4b48-be73-e3c214e214cb">
+		<parameter name="id_perkara" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[select nama from pidum.ms_tersangka
+where id_perkara=$P{id_perkara}]]>
+		</queryString>
+		<field name="nama" class="java.lang.String"/>
+	</subDataset>
+	<subDataset name="penandatangan" uuid="9c42eea6-309d-4495-9500-a1b0e8abeaf1">
+		<parameter name="id_penandatangan" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[select peg_nik,nama from pidum.pdm_penandatangan
+ limit 1]]>
+		</queryString>
+		<field name="peg_nik" class="java.lang.String"/>
+		<field name="nama" class="java.lang.String"/>
+	</subDataset>
+	<subDataset name="tembusan" uuid="887796d0-d7f4-4f97-bce9-81cc5a462b91">
+		<parameter name="id_perkara" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[Select keterangan from pidum.pdm_tembusan
+where id_perkara=$P{id_perkara}]]>
+		</queryString>
+		<field name="keterangan" class="java.lang.String"/>
+	</subDataset>
+	<subDataset name="petunjuk" uuid="d136ab97-090a-4f5c-84da-d53c1233cda2">
+		<parameter name="idperkara" class="java.lang.String"/>
+		<queryString>
+			<![CDATA[select p19.petunjuk from pidum.pdm_p19 p19
+limit 4]]>
+		</queryString>
+		<field name="petunjuk" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="id_perkara" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     tanggal_tulisan(d."tgl_surat") AS tglpdm_18,
+     tanggal_tulisan(a."tgl_surat") AS tglpdm_19,
+     a."no_surat" as nosur_p19,
+     a."sifat",
+     a."lampiran",
+     b."nama",
+     c."undang_pasal",
+     a."kepada",
+     a."di",
+     d."no_surat" as pdm_18 ,
+     a."petunjuk"  ,
+     c."wilayah_kerja" ,
+     a."id_perkara" ,
+     a."id_penandatangan",
+     a.dikeluarkan,
+     c.no_surat,
+     tanggal_tulisan(c.tgl_surat)as tgl_sur,
+     tanggal_tulisan(c.tgl_terima) as tgl_terima
+FROM
+     "pidum"."pdm_p19" a
+INNER JOIN "pidum"."ms_tersangka" b ON b."id_perkara" = a."id_perkara"
+     INNER JOIN "pidum"."pdm_spdp" c ON a."id_perkara" = c."id_perkara"
+     INNER JOIN "pidum"."pdm_p18" d ON a."id_perkara" = d."id_perkara"
+WHERE
+     a.id_perkara = $P{id_perkara}]]>
+	</queryString>
+	<field name="tglpdm_18" class="java.lang.String"/>
+	<field name="tglpdm_19" class="java.lang.String"/>
+	<field name="nosur_p19" class="java.lang.String"/>
+	<field name="sifat" class="java.lang.String"/>
+	<field name="lampiran" class="java.lang.String"/>
+	<field name="nama" class="java.lang.String"/>
+	<field name="undang_pasal" class="java.lang.String"/>
+	<field name="kepada" class="java.lang.String"/>
+	<field name="di" class="java.lang.String"/>
+	<field name="pdm_18" class="java.lang.String"/>
+	<field name="petunjuk" class="java.lang.String"/>
+	<field name="wilayah_kerja" class="java.lang.String"/>
+	<field name="id_perkara" class="java.lang.String"/>
+	<field name="id_penandatangan" class="java.lang.String"/>
+	<field name="dikeluarkan" class="java.lang.String"/>
+	<field name="no_surat" class="java.lang.String"/>
+	<field name="tgl_sur" class="java.lang.String"/>
+	<field name="tgl_terima" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="802" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="2163c5d9-e006-4b88-adf8-7f62add99ac7" x="0" y="631" width="65" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tembusan:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d7be8ff0-f322-4a53-92de-50d3eb623385" x="331" y="141" width="16" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Di-]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9206b5cb-0fc3-4aa7-87ca-cca19e1bcae7" x="3" y="767" width="393" height="16"/>
+				<textElement>
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[    tembusannya disampaikan juga kepada Kajari]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="5555f1d4-c5f6-4f95-a214-518ddc5bfd77" x="303" y="630" width="199" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="43155df7-2402-44f4-a0a6-2fcc04951b8f" x="1" y="57" width="100" height="20"/>
+				<textElement>
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[Nomor		:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="70ba5aaa-b498-46cf-9638-3760054f4264" x="101" y="77" width="100" height="20"/>
+				<textElement>
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sifat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="f9d18b23-1063-45b7-b94d-f0092e80fd5a" x="331" y="108" width="222" height="22"/>
+				<textElement>
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kepada}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="c2d8d057-3a3b-4c5e-93df-edec9cbf55f8" x="299" y="528" width="232" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[KEPALA KEJAKSAAN TINGGI/NEGERI *)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="43155df7-2402-44f4-a0a6-2fcc04951b8f" x="1" y="117" width="100" height="20"/>
+				<textElement>
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[Perihal		:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="96366efa-cc3b-4106-8da7-59a774141072" x="103" y="171" width="130" height="15"/>
+				<textElement textAlignment="Justified">
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{undang_pasal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="10e64400-580b-465f-95b8-8a295ae4d0d6" x="14" y="477" width="455" height="34"/>
+				<textElement textAlignment="Justified">
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[	Setelah dilengkapi sesuai dengan petunjuk diatas agar segera disampaikan kepada kami untuk penyelesaian selanjutnya.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="43155df7-2402-44f4-a0a6-2fcc04951b8f" x="1" y="97" width="100" height="20"/>
+				<textElement>
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[Lampiran	:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6802ef9c-71cc-489b-98d7-2fdd6a084413" x="331" y="90" width="100" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[KEPADA YTH.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="43155df7-2402-44f4-a0a6-2fcc04951b8f" x="1" y="77" width="100" height="20"/>
+				<textElement>
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[Sifat		:]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="73f29ea4-ff7d-4261-8984-57ab58510aea" x="351" y="180" width="202" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="bbe7486e-2f05-47cf-b220-37079653f4bb" x="303" y="632" width="72" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[pangkat/Nip ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9206b5cb-0fc3-4aa7-87ca-cca19e1bcae7" x="3" y="751" width="393" height="16"/>
+				<textElement>
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[*) Kalau ditandatangani oleh Kasi Pidum atau Kacabjari]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a619b16c-1988-4d6c-b860-ba50ba5d8c03" x="103" y="151" width="159" height="20"/>
+				<textElement>
+					<font fontName="SansSerif" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[yang disangka melanggar pasal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1344682d-5f73-4943-baab-17fe3b62da68" x="523" y="1" width="32" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[P-19]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c13547c2-5282-4dd3-b391-e2932fa7da51" x="14" y="243" width="198" height="20"/>
+				<textElement textAlignment="Justified">
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[Sehubungan dengan surat kami Nomor: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="10e64400-580b-465f-95b8-8a295ae4d0d6" x="14" y="511" width="169" height="17"/>
+				<textElement textAlignment="Justified">
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[	Demikian untuk dimaklumi.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9206b5cb-0fc3-4aa7-87ca-cca19e1bcae7" x="3" y="783" width="393" height="16"/>
+				<textElement>
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[**) Cukup disampaikan kepada atasan langsung dari penerima surat ini.]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement uuid="c4f10c72-ee81-4681-b39d-eb894ff5d480" x="3" y="0" width="305" height="21"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="wilayah_kerja" uuid="0db7d4b3-99b2-48c1-89d8-127134a183c3">
+						<datasetParameter name="wilayah_kerja">
+							<datasetParameterExpression><![CDATA[$F{wilayah_kerja}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="21" width="305">
+						<textField>
+							<reportElement uuid="cb463444-5aca-4f4a-b79e-35d5f16d85b6" x="0" y="1" width="305" height="20"/>
+							<textElement>
+								<font fontName="Times New Roman" size="12" isBold="true"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{inst_nama}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<componentElement>
+				<reportElement uuid="968ec004-cc82-462f-b912-8d2e422adde1" x="155" y="130" width="97" height="21"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="nama_tersangka" uuid="4cd88716-7ad7-4f55-b369-4063b52b5a73">
+						<datasetParameter name="id_perkara">
+							<datasetParameterExpression><![CDATA[$F{id_perkara}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="21" width="97">
+						<textField>
+							<reportElement uuid="7b82420b-3d88-4534-ac48-f270f7c4340e" x="0" y="2" width="97" height="19"/>
+							<textElement>
+								<font fontName="SansSerif" size="10"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{nama}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<componentElement>
+				<reportElement uuid="a5f049ec-0abd-428f-ac39-213c1a1dd8fc" x="303" y="609" width="202" height="41"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="penandatangan" uuid="d7231b96-bec9-4b43-a393-1f7cdd4e3cb4">
+						<datasetParameter name="id_penandatangan">
+							<datasetParameterExpression><![CDATA[$F{id_penandatangan}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="41" width="202">
+						<textField>
+							<reportElement uuid="2a435a58-ef9c-4c78-b01a-be144b210087" x="72" y="21" width="100" height="20"/>
+							<textElement/>
+							<textFieldExpression><![CDATA[$F{peg_nik}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement uuid="c59e0875-b458-46a7-a3f9-409f78d1e128" x="5" y="2" width="197" height="20"/>
+							<textElement/>
+							<textFieldExpression><![CDATA[$F{nama}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<componentElement>
+				<reportElement uuid="6bda7278-ea1e-4fae-960c-9f8220e45b56" x="3" y="651" width="198" height="20"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="tembusan" uuid="b023a469-7d0c-4bba-b92e-31ad4c36ecfc">
+						<datasetParameter name="id_perkara">
+							<datasetParameterExpression><![CDATA[$F{id_perkara}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="20" width="198">
+						<textField>
+							<reportElement uuid="22a01946-39a3-4cf7-b6f7-842f8bb5c348" x="0" y="1" width="114" height="18"/>
+							<textElement>
+								<font fontName="SansSerif" size="10"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{keterangan}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<staticText>
+				<reportElement uuid="fda6950c-e8e0-4794-9983-e11ca0ca6547" x="282" y="303" width="259" height="20"/>
+				<textElement/>
+				<text><![CDATA[untuk Saudara lengkapi dalam waktu 14 bari]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c22b63c5-d1d7-4eab-9490-2fe87ab1f165" x="3" y="303" width="174" height="20"/>
+				<textElement/>
+				<text><![CDATA[yang telah kami terima pada tanggal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f24f6dbc-e2a1-4aa9-96e7-c960fcbaff7f" x="312" y="243" width="44" height="20"/>
+				<textElement/>
+				<text><![CDATA[tanggal ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="31b2fba2-6c29-43d0-a181-33721041c4cd" x="171" y="283" width="41" height="20"/>
+				<textElement/>
+				<text><![CDATA[ Nomor:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="889afb59-ed29-45c2-b306-41c250a9dcca" x="1" y="263" width="554" height="20"/>
+				<textElement/>
+				<text><![CDATA[ sesuai dengan pasal 110 (2), (3) dan 138 (2) KUHAP, bersama ini kami kembalikan berkas perkara pidana atas nama]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="280cea10-c9b2-4b7f-9512-6aaf9b78894b" x="312" y="283" width="39" height="20"/>
+				<textElement/>
+				<text><![CDATA[ tanggal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2745d877-e65f-4dc4-824b-26cce1b622eb" x="1" y="283" width="52" height="20"/>
+				<textElement/>
+				<text><![CDATA[ tersangka]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7325a1a2-bfa0-4c70-87ec-10f3bdabcc49" x="1" y="323" width="427" height="19"/>
+				<textElement/>
+				<text><![CDATA[ seterimanya berkas perkara ini, dengan petunjuk-petunjuk sebagai berikut :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="10936f46-166c-4665-9fd8-bca603f6f64f" x="102" y="117" width="150" height="34"/>
+				<textElement>
+					<font fontName="SansSerif"/>
+				</textElement>
+				<text><![CDATA[ Pengembalian Berkas Perkara atas nama]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="421ba58a-fcd2-4099-a945-b5c0fa46273d" x="103" y="186" width="100" height="20"/>
+				<textElement>
+					<font fontName="SansSerif"/>
+				</textElement>
+				<text><![CDATA[untuk dilengkapi.]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="4f1b5f25-be3d-4650-ba59-8e486b2c2cbc" x="53" y="283" width="118" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{nama}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement uuid="c36aaa27-5f13-45a2-8b43-d137877bc09a" x="299" y="548" width="201" height="20"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="wilayah_kerja" uuid="21649939-01e7-4bc0-888f-512b76519653">
+						<datasetParameter name="wilayah_kerja">
+							<datasetParameterExpression><![CDATA[$F{wilayah_kerja}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="20" width="201">
+						<textField>
+							<reportElement uuid="95c24635-4c66-47ca-b47f-3aa33d2ae402" x="0" y="0" width="182" height="20"/>
+							<textElement/>
+							<textFieldExpression><![CDATA[$F{inst_nama}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<componentElement>
+				<reportElement uuid="52622e28-3050-422b-860d-9e3236371d3b" x="3" y="359" width="550" height="24"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="petunjuk" uuid="4e9be96c-2713-4bdb-8fd4-b5c4ad259094">
+						<datasetParameter name="idperkara">
+							<datasetParameterExpression><![CDATA[$P{id_perkara}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="24" width="550">
+						<textField>
+							<reportElement uuid="c3206111-080d-47f9-b1ff-7468ed3855a7" x="0" y="0" width="24" height="21"/>
+							<textElement/>
+							<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement uuid="50752460-c899-4f95-bd68-b26ba9e292f3" x="24" y="1" width="279" height="20"/>
+							<textElement/>
+							<textFieldExpression><![CDATA[$F{petunjuk}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<staticText>
+				<reportElement uuid="d7be8ff0-f322-4a53-92de-50d3eb623385" x="303" y="610" width="6" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[(]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d7be8ff0-f322-4a53-92de-50d3eb623385" x="499" y="610" width="6" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[)]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="79a2ca8a-0b32-498d-931d-9f46cfc53ce2" x="356" y="243" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tglpdm_19}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="c7f00feb-f6b9-414b-8890-452770025389" x="212" y="243" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{nosur_p19}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="ada3b299-fcb7-46ab-8253-c68e1402efa6" x="212" y="283" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{no_surat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="a55a94cc-942e-4798-ad20-bb2205987533" x="352" y="283" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tgl_sur}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="c55f0945-4938-43e6-a64c-eeb2ff82f575" x="177" y="303" width="105" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tgl_terima}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="2f7bb10a-d587-43a4-bf0c-d06c14706ad9" x="101" y="57" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{nosur_p19}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="71f51fca-d426-4827-bef6-8350ec575603" x="101" y="97" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{lampiran}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="7fae2a76-48cf-4c50-a871-3a0b7f0d8931" x="351" y="160" width="202" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{di}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="WAS-1" language="groovy" pageWidth="612" pageHeight="936" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="64abcbda-9598-451b-8a21-76e3c0deb58b">
+	<property name="ireport.zoom" value="0.909090909090915"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="75" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="edfb0d88-9ec0-49fc-bb4c-55f69f36c15a" x="380" y="0" width="193" height="15"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[Lampiran Petunjuk Pengawasan JAMWAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="edfb0d88-9ec0-49fc-bb4c-55f69f36c15a" x="380" y="14" width="193" height="15"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[Nomor : 01/H/Hjw/04//2011 tanggal 01 April]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="edfb0d88-9ec0-49fc-bb4c-55f69f36c15a" x="380" y="28" width="193" height="15"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[2011 tentang Teknis Penanganan Laporan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="edfb0d88-9ec0-49fc-bb4c-55f69f36c15a" x="380" y="43" width="193" height="15"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[Pengaduan dan Tata Kelola Administrasi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="edfb0d88-9ec0-49fc-bb4c-55f69f36c15a" x="380" y="58" width="193" height="15"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[Bidang Pengawasan]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="16" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="249eb1c7-d31e-4b05-af84-0f8235d7565a" x="40" y="1" width="65" height="15"/>
+				<textElement/>
+				<text><![CDATA[KEJAKSAAN]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="158f105e-775b-4f43-9c61-980b4555918a" x="472" y="0" width="100" height="20"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[WAS-13]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="381" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="54343778-8de9-458e-9985-a3ea8f8e7a9a" x="41" y="39" width="531" height="20"/>
+				<textElement textAlignment="Center">
+					<font isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[TANDA TERIMA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="73779a56-9843-4c7e-ba5a-aba6e47c3ff8" x="105" y="88" width="67" height="20"/>
+				<textElement/>
+				<text><![CDATA[Pada hari ini]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="73779a56-9843-4c7e-ba5a-aba6e47c3ff8" x="234" y="88" width="42" height="20"/>
+				<textElement/>
+				<text><![CDATA[tanggal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="73779a56-9843-4c7e-ba5a-aba6e47c3ff8" x="342" y="88" width="112" height="20"/>
+				<textElement/>
+				<text><![CDATA[telah diterima surat dari]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="73779a56-9843-4c7e-ba5a-aba6e47c3ff8" x="485" y="88" width="42" height="20"/>
+				<textElement/>
+				<text><![CDATA[Nomor :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="73779a56-9843-4c7e-ba5a-aba6e47c3ff8" x="40" y="108" width="42" height="20"/>
+				<textElement/>
+				<text><![CDATA[tanggal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="73779a56-9843-4c7e-ba5a-aba6e47c3ff8" x="192" y="108" width="216" height="20"/>
+				<textElement/>
+				<text><![CDATA[yang ditujukan kepada]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="64302175-aead-43a2-9877-b28db0db8c64" x="117" y="184" width="117" height="20"/>
+				<textElement/>
+				<text><![CDATA[Yang menyampaikan,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="64302175-aead-43a2-9877-b28db0db8c64" x="385" y="184" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Yang menerima, ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="465276f9-4c95-4c75-9c1a-77dd0a9217e5" x="81" y="292" width="179" height="15"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[(PANGKAP NIP)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="80cc66c3-1b9d-43cd-b7ea-f70f61c55f93" x="82" y="277" width="179" height="15"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[NAMA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="80cc66c3-1b9d-43cd-b7ea-f70f61c55f93" x="348" y="277" width="179" height="15"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[(.............................................)]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="108" splitType="Stretch"/>
+	</columnFooter>
+</jasperReport>

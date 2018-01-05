@@ -1,0 +1,1 @@
+c:/myapp/db/App/PgSQL/bin/postgres.exe "-D" "c:\myapp\db\Data\data"

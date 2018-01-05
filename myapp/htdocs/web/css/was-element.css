@@ -1,0 +1,163 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*dugaan-pelanggaran*/
+
+.table-dugaan-pelanggaran {
+	border:1px solid #f4f4f4;
+	background:#FFF;
+}
+.table-dugaan-pelanggaran a {
+	color:#0f5e86;
+}
+.table-dugaan-pelanggaran a:hover {
+	color:#08415d;
+}
+.table-dugaan-pelanggaran > caption + thead > tr:first-child > th, .table > colgroup + thead > tr:first-child > th, .table > thead:first-child > tr:first-child > th, .table > caption + thead > tr:first-child > td, .table > colgroup + thead > tr:first-child > td, .table > thead:first-child > tr:first-child > td {
+  /*background: #f3f3f3 linear-gradient(to bottom, #f8f8f8, #ececec) repeat-x scroll 0 0;*/
+  background-image: linear-gradient(to bottom, rgba(206, 230, 254, 1) 0%, rgba(178, 214, 250, 1) 100%);
+  border: 1px solid #81bcf8;
+  color: #0f5e86;
+}
+.table-dugaan-pelanggaran>thead>tr>th, .table-dugaan-pelanggaran>tbody>tr>th, .table-dugaan-pelanggaran>tfoot>tr>th, .table-dugaan-pelanggaran>thead>tr>td, .table-dugaan-pelanggaran>tbody>tr>td, .table-dugaan-pelanggaran>tfoot>tr>td {
+	border:1px solid #f4f4f4;
+}
+.table-dugaan-pelanggaran>thead>tr>th, .table-dugaan-pelanggaran>thead>tr>td {
+	border-bottom-width:2px;
+	background-image: linear-gradient(to bottom, rgba(234, 233, 233, 1) 0%, rgba(216, 215, 215, 1) 100%);
+}
+
+.modal-header {
+    border-bottom: 1px solid #fff;
+    border-radius: 0;
+    /*box-shadow: 0 0 5px 0 #717171 inset !important;*/
+	box-shadow: none !important;
+    margin: 15px 15px 0;
+	background:#73a8de !important;
+	font-size:18px;
+	font-weight:bold;
+	color:#FFF;
+}
+button.close {
+  -webkit-appearance: none;
+  padding: 0 5px;
+  cursor: pointer;
+  background: #FFF !important;
+  border-radius:3px;
+  border:none;
+}
+.close {
+  float: right;
+  font-size: 21px;
+  font-weight: bold;
+  line-height: 1;
+  color: #73a8de !important;
+  /*text-shadow: 0 1px 0 #fff;
+  filter: alpha(opacity=20);
+  opacity: .2;*/
+}
+.panel-primary {
+  border-color: #73a8de !important;
+}
+.panel-primary > .panel-heading {
+    background-color: #73a8de !important;
+    border-color: none !important;
+    color: #fff;
+}
+.content-wrapper-1 {
+    margin: 0px;
+    padding: 10px;
+    box-shadow: 0 0 5px 0 #aaaaaa inset;
+    overflow: hidden;
+    border-radius: 4px;
+}
+.content-wrapper, .right-side {
+	min-height:100%;
+	/*background-image: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(209, 209, 210, 1) 100%);*/
+	background: #FFF;
+	z-index:800
+}
+.kv-panel-after {
+    padding: 0px !important;
+}
+.table-hover > tbody > tr:hover {
+  /*background-color: #b5fc81 !important;*/
+  color: #333;
+  cursor: pointer;
+}
+.table {
+    margin-bottom: 1px !important;
+    max-width: 100%;
+    width: 100%;
+}
+.box-footer {
+	text-align:center !important;
+}
+.panel-footer {
+    background-color: #f5f5f5;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-top: 1px solid #ddd;
+    padding: 10px 15px;
+    text-align: center !important;
+}
+.skin-green .main-header .navbar .nav>li>a:hover, .skin-green .main-header .navbar .nav>li>a:active, .skin-green .main-header .navbar .nav>li>a:focus, .skin-green .main-header .navbar .nav .open>a, .skin-green .main-header .navbar .nav .open>a:hover, .skin-green .main-header .navbar .nav .open>a:focus {
+    background-image: linear-gradient(to bottom, rgba(115, 168, 222, 1) 0%, rgba(88, 141, 194, 1) 100%) !important;
+    color:#f6f6f6
+}
+strong.head{
+    color: #777 !important;
+	padding:3px 5px;
+	border-radius:3px;
+	border:1px solid #bababa;
+	font-weight:normal;
+}
+
+/*.chart-legend li span{
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 5px;
+}*/
+
+.chart-legend li span{
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 5px;
+	border: 1px solid #000;
+}
+
+ul, ol {
+    list-style: outside none none !important;
+    margin-bottom: 10px;
+    margin-top: 0;
+}
+/*.table.no-border, .table.no-border td, .table.no-border th {
+	border:0
+}
+table.text-center, table.text-center td, table.text-center th {
+	text-align:center
+}
+.table.align th {
+	text-align:left
+}
+.table.align td {
+	text-align:right
+}*/
+
+/*dugaan-pelanggaran end*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+

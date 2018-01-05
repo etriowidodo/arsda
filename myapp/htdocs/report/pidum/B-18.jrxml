@@ -1,0 +1,537 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="B-18" language="groovy" pageWidth="700" pageHeight="1300" columnWidth="660" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="759209df-3fe9-4ccf-8ec8-65eab1c39112">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="id_perkara" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{id_perkara}]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     a."no_surat",
+     a."tgl_surat",
+     a."dikeluarkan",
+     a."id_penandatangan",
+     b."nama",
+     c."no_pengiriman",
+     c."tgl_terima",
+     e."nip",
+     e."pangkat",
+     e."nama" AS jaksa,
+     g.inst_nama
+FROM
+     "pidum"."pdm_b18" a INNER JOIN "pidum"."ms_tersangka" b ON a."id_perkara" = b."id_perkara"
+     INNER JOIN "pidum"."pdm_berkas" c ON a."id_perkara" = c."id_perkara"
+     INNER JOIN "pidum"."pdm_jaksa_saksi" e ON a."id_perkara" = e."id_perkara"
+inner join pidum.pdm_spdp f ON a.id_perkara = f.id_perkara
+inner join kepegawaian.kp_inst_satker g ON f.wilayah_kerja = g.inst_satkerkd]]>
+	</queryString>
+	<field name="no_surat" class="java.lang.String"/>
+	<field name="tgl_surat" class="java.sql.Date"/>
+	<field name="dikeluarkan" class="java.lang.String"/>
+	<field name="id_penandatangan" class="java.lang.String"/>
+	<field name="nama" class="java.lang.String"/>
+	<field name="no_pengiriman" class="java.lang.String"/>
+	<field name="tgl_terima" class="java.sql.Date"/>
+	<field name="nip" class="java.lang.String"/>
+	<field name="pangkat" class="java.lang.String"/>
+	<field name="jaksa" class="java.lang.String"/>
+	<field name="inst_nama" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="177" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="c03a540e-96fb-4989-ad90-f1874709803b" x="175" y="65" width="378" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SURAT PERINTAH PELIMPAHAN BARANG RAMPASAN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c08bb961-a973-4810-80c1-d8ffb4f17fc6" x="258" y="85" width="118" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOMOR : PRINT ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9a67fe49-01de-406d-ae8b-9388c4cb35c6" x="175" y="105" width="64" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[KEPALA]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="5df08060-8292-473e-bdc9-007f714d118d" x="374" y="85" width="100" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{no_surat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0d4f6280-dac6-4a13-9294-92a9c289b723" x="2" y="0" width="256" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{inst_nama}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="3cc2544c-62e6-4f61-b65a-d4a05d625da3" x="238" y="105" width="266" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{inst_nama}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="997" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="e21d1694-5b19-48fd-a957-aae1345580c9" x="0" y="22" width="131" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Dasar 		           :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="00ed1604-6b6e-41ff-a380-f662d72ca699" x="131" y="22" width="412" height="60"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[1. Keputusan Jaksa Agung RI Nomor : Kep-089/JA/811988
+    tanggal 5 Agustus 1988 tentang Penyelesaian Barang
+    Rampasan.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1c03db97-68b3-4326-ae57-2f3c825ce2b5" x="131" y="82" width="412" height="50"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[2. Surat Edaran Jaksa Agung Muda Pembinaan No. SE-
+    03/B/518/1988 tanggal 6 Agustus 1988 tentang Penyelesaian
+    Barang Rampasan.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e21d1694-5b19-48fd-a957-aae1345580c9" x="0" y="146" width="131" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Pertimbangan            :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ef75167d-1d0c-4956-8c83-76c13485a403" x="405" y="146" width="57" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Tanggal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7cf0dbb9-8212-4f27-ad4a-55295cd46188" x="131" y="166" width="47" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Nomor ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1fb8a164-9d53-4405-b778-e73d33e23943" x="275" y="166" width="166" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Dalam perkara tindak pidana]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7692a5dc-d870-4db7-a02b-a50d0d61e72d" x="131" y="186" width="144" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Atas nama terdakwa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9f3382bf-4e4f-448c-bb64-b3bb90037175" x="373" y="186" width="237" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[yang telah memperoleh kekuatan hukum ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="91cf9e51-fd26-49d6-b85e-1d1999ccaa59" x="131" y="206" width="301" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[tetap, barang bukti tersebut dalam register bukti No.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ceca835f-17cc-4df3-820e-32a037f0bc02" x="131" y="226" width="47" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[berupa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1354a2fe-8378-4848-bd00-73a68ac2cc59" x="276" y="226" width="209" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[dinyatakan dirampas untuk negara.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="10ad5cb1-0fac-4cc0-b799-5b7e98d25e6a" x="131" y="246" width="412" height="86"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[2. Dalam tenggang waktu 7 (tujuh) hari setelah putusan tersebut
+    memperoleh kekuatan hukum tetap, barang rampasan tersebut
+    harus dilimpahkan penanganannya dari bidang yang
+    menangani sebelum menjadi barang rampasan kepada bidang
+    yang berwenang menyelesaikan barang rampasan tersebut.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="830dfc05-4d05-4027-81ef-1060082b1632" x="144" y="371" width="156" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MEMERINTAHKAN :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="bdb1fdbe-bace-4219-87cd-09ac8e834e59" x="132" y="392" width="29" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[1.  ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e21d1694-5b19-48fd-a957-aae1345580c9" x="2" y="392" width="131" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Kepada 	           :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6819dbf3-f7a9-4f2b-b9a2-ab3eedea953a" x="259" y="392" width="68" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Pangkat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6819dbf3-f7a9-4f2b-b9a2-ab3eedea953a" x="425" y="392" width="32" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[NIP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7b3761f9-38a0-4589-bff2-20b9f09ce798" x="131" y="412" width="126" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[KASI tindak pidana]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7b3761f9-38a0-4589-bff2-20b9f09ce798" x="356" y="412" width="100" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Kejaksaan Negeri]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ebc0289a-11fe-4d03-a7f6-627e5101298d" x="131" y="432" width="412" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Selaku satuan tugas yang menangani barang bukti sebelum menjadi barang rampasan.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7b3761f9-38a0-4589-bff2-20b9f09ce798" x="132" y="472" width="132" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Kasubang pembinaan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6819dbf3-f7a9-4f2b-b9a2-ab3eedea953a" x="415" y="452" width="28" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[NIP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ebc0289a-11fe-4d03-a7f6-627e5101298d" x="132" y="492" width="412" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Selaku bidang yang berwenang menyelesaikan barang rampasan.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6819dbf3-f7a9-4f2b-b9a2-ab3eedea953a" x="243" y="452" width="74" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Pangkat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7b3761f9-38a0-4589-bff2-20b9f09ce798" x="263" y="472" width="124" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Kejaksaan Negeri]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="bdb1fdbe-bace-4219-87cd-09ac8e834e59" x="131" y="452" width="14" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[2.  ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e21d1694-5b19-48fd-a957-aae1345580c9" x="2" y="512" width="132" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Untuk 		           :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="840edd93-f232-464d-8ad4-185af825897f" x="132" y="512" width="13" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[1.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ee81a1d8-1090-477f-a403-248bf2369474" x="144" y="512" width="373" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Melaksanakan pelimpahan penanganan barang rampasan berupa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7afbd756-b445-471d-b177-a1e22662b25e" x="133" y="532" width="113" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Register bukti No.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="0ac446b1-8c65-42dc-83cd-d7876fc4d0e2" x="344" y="532" width="171" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[dalam perkara tindak pidana]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="de013cd7-7e8e-48f8-90ca-ad929b1f5369" x="133" y="552" width="120" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Atas nama terdakwa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8aaa6ab0-5261-469f-95ae-a876302f5d20" x="351" y="552" width="244" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[dari petugas NO. 1 kepada petugas NO. 2 ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="94fab110-83d9-481e-94c7-72b54229fc82" x="133" y="572" width="226" height="17"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[dalam tenggang waktu 7 (tujuh) hari.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="62be7316-171f-4594-aafc-f0680004afec" x="134" y="588" width="18" height="40"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[2.  ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f0e8c288-94bd-4f02-9e68-9058422e98ca" x="151" y="588" width="399" height="40"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Agar dilaksanakan dengan penuh tanggungjawab dan dibuatkan
+Berita Acara yang dilampiri dengan:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="62be7316-171f-4594-aafc-f0680004afec" x="133" y="627" width="19" height="21"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[2.1.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7b3761f9-38a0-4589-bff2-20b9f09ce798" x="152" y="628" width="169" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Salinan putusan PN/PT/MA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="17570620-112c-49fb-b093-b667e32f380f" x="416" y="628" width="56" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Tanggal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="73bf7ce2-05a9-43f7-9441-56bc2f192eca" x="150" y="647" width="52" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Nomor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="62be7316-171f-4594-aafc-f0680004afec" x="131" y="666" width="19" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[2.2.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7b3761f9-38a0-4589-bff2-20b9f09ce798" x="149" y="666" width="107" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Pendapat hukum.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7b3761f9-38a0-4589-bff2-20b9f09ce798" x="0" y="738" width="201" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Kepada   : Ybs untuk dilaksanakan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7b3761f9-38a0-4589-bff2-20b9f09ce798" x="412" y="738" width="100" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ditetapkan Di :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7b3761f9-38a0-4589-bff2-20b9f09ce798" x="412" y="758" width="99" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pada Tanggal :]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="f0612bcf-0ec1-47a4-aa6f-2fa1d18f8d5b" x="177" y="166" width="100" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{no_pengiriman}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d1807edf-107d-43e3-8ddf-7fe8de7534a5" x="461" y="146" width="100" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tgl_terima}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="29c540f9-0913-4d47-91a7-ee1cae983d42" x="274" y="186" width="100" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nama}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="aa58b9f5-aabe-4141-900b-3969d3673052" x="159" y="392" width="100" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jaksa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="493a173b-dec0-4a54-b1d0-6a247a0af249" x="326" y="392" width="100" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pangkat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="46987043-05c3-4973-9e73-fc9c5561270b" x="456" y="391" width="100" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nip}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="8fc8e56e-a809-4728-8a3b-a19ac476e131" x="144" y="452" width="100" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jaksa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0bcb1fda-d4e3-4924-977f-1a88ac9f4cf5" x="316" y="452" width="100" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pangkat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d852ede4-5d57-4099-8dac-0cb590e157fd" x="442" y="452" width="100" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nip}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="517c26db-fd43-40fa-8a17-0ada18980543" x="252" y="552" width="99" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nama}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d76b0d16-f03a-40f6-a000-8105e2514669" x="472" y="628" width="100" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tgl_terima}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="a932fc5b-11e7-4c4f-a833-3d5243cff6d9" x="202" y="646" width="100" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{no_pengiriman}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="4bda81fd-4375-4512-adc1-395ff0c0cca1" x="510" y="738" width="100" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dikeluarkan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="9ea3e8a2-3458-41c7-bcc9-79f70466aac2" x="510" y="758" width="100" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tgl_surat}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="3a8adb68-267e-4b86-a0bf-e317ae2c2a72" x="134" y="332" width="408" height="39"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[3. Oleh karena itu dianggap perlu untuk mengeluarkan surat
+    perintah untuk melimpahkan Jam barang rampasan tersebut.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="830c225a-a108-4a14-9ed6-7144cb7aa06d" x="132" y="146" width="212" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[1. Berdasarkan putusan PN/PT/MA]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

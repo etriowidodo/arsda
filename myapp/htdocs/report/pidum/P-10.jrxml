@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="P-10" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ec8ed6c3-65f2-4ef8-b57b-414d1c6eda11">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="dataset1" uuid="03735a21-9909-4b17-83fd-45222b853429">
+		<parameter name="idperkara" class="java.lang.String"/>
+		<queryString>
+			<![CDATA[select tembusan.keterangan
+from pidum.pdm_p10 p10
+left join pidum.pdm_tembusan tembusan
+ON ( tembusan.id_table = p10.id_p10)
+where p10.id_perkara=$P{idperkara}
+and tembusan.kode_table='p-10']]>
+		</queryString>
+		<field name="keterangan" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="id_perkara" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{id_perkara}]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     a."sifat",
+     a."no_surat",
+     a."lampiran",
+     b."pangkat",
+     b."nama" AS jaksa,
+     c."wilayah_kerja",
+     d."nama" AS tersangka,
+     e."keterangan" ,
+     i."inst_nama"
+FROM
+     "pidum"."pdm_p10" a
+ INNER JOIN "pidum"."pdm_jaksa_saksi" b ON a."id_perkara" = b."id_perkara"
+     INNER JOIN "pidum"."pdm_spdp" c ON a."id_perkara" = c."id_perkara"
+     INNER JOIN "pidum"."ms_tersangka" d ON a."id_perkara" = d."id_perkara"
+     INNER JOIN "pidum"."pdm_tembusan" e ON a."id_perkara" = e."id_perkara"
+     INNER JOIN "pidum"."pdm_spdp" f ON a."id_perkara" = f."id_perkara"
+     INNER JOIN "kepegawaian"."kp_inst_satker" i ON f."wilayah_kerja" = i."inst_satkerkd"]]>
+	</queryString>
+	<field name="sifat" class="java.lang.String"/>
+	<field name="no_surat" class="java.lang.String"/>
+	<field name="lampiran" class="java.lang.String"/>
+	<field name="pangkat" class="java.lang.String"/>
+	<field name="jaksa" class="java.lang.String"/>
+	<field name="wilayah_kerja" class="java.lang.String"/>
+	<field name="tersangka" class="java.lang.String"/>
+	<field name="keterangan" class="java.lang.String"/>
+	<field name="inst_nama" class="java.lang.String"/>
+	<variable name="wilayah_kerja_1" class="java.lang.Integer" resetType="Page" calculation="DistinctCount">
+		<variableExpression><![CDATA[$F{wilayah_kerja}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="146" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="7898e82d-aa1f-432f-aed0-3b80045d9fd9" x="10" y="79" width="71" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Lampiran:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="eb16c566-44d4-4bc6-a357-66dc49b997ff" x="10" y="60" width="71" height="19"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Nomor:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6449c224-9774-4ea7-951a-f09cb1863ed9" x="372" y="21" width="74" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[KEPADA YTH:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6449c224-9774-4ea7-951a-f09cb1863ed9" x="374" y="40" width="72" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[DI:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9598a03b-e24a-4039-874c-7d516d3d468a" x="10" y="40" width="71" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Sifat:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a3185127-3750-421b-be76-72eef0486416" x="81" y="112" width="83" height="15"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Saksi / Ahli *)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5441486c-2813-4a61-9832-9fbee2dde149" x="10" y="99" width="154" height="13"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Perihal: Bantuan Pemanggilan]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="1d5a9b11-4436-48f0-9760-fffe2c1485c7" x="81" y="59" width="100" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{no_surat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="77efb2a5-3cd1-4c9a-85ad-bd668c99f814" x="81" y="79" width="100" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{lampiran}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="6efb6739-1073-42a6-8109-81b4023b792c" x="81" y="40" width="100" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sifat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="8c271754-860a-4f4e-a044-9217d173fefd" x="446" y="21" width="100" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jaksa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="e1d448ed-15ec-495e-9ad3-427b94219152" x="446" y="40" width="100" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{wilayah_kerja}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="22b00d7a-c401-4285-b4a1-2aba97b1ec8b" x="10" y="20" width="202" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{inst_nama}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="bfce6046-4aa9-43e7-970c-c2898a7661dc" x="81" y="127" width="100" height="16"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jaksa}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="126" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="a4154809-1a96-447e-8ac8-c0a285bce565" x="28" y="98" width="451" height="16"/>
+				<textElement/>
+				<text><![CDATA[Demikian atas perhatian dan bantuan Saudara kami ucapkan terima kasih.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4fc2ea58-acad-45c7-b27b-0ae9778c4683" x="28" y="13" width="451" height="37"/>
+				<textElement/>
+				<text><![CDATA[       Dalam rangka penyidikan/melengkapi berkas perkara *)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="12a63ea9-4c96-407a-b194-56ddef436189" x="28" y="30" width="137" height="20"/>
+				<textElement/>
+				<text><![CDATA[yang diduga dilakukan oleh]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="47d2e8b4-c1c6-409c-95cf-50b08b0591f1" x="265" y="30" width="175" height="20"/>
+				<textElement/>
+				<text><![CDATA[dan demi kelancaran penyidikan /]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="828577cf-6a2a-411f-84a0-6c13c60ff8a7" x="28" y="50" width="451" height="20"/>
+				<textElement/>
+				<text><![CDATA[pemeriksaan tambahan diperlukan keterangan ahli dari]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2572a8cb-ef55-4196-b2d1-91592a0f6176" x="28" y="70" width="451" height="28"/>
+				<textElement/>
+				<text><![CDATA[Oleh karena itu kami minta bantuannya kiranya dapat ditunjuk pejabat dari instansi saudara yang pada saatnya nanti akan kami panggiluntuk didengar keterangannya.]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="8c271754-860a-4f4e-a044-9217d173fefd" x="289" y="50" width="133" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{jaksa}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="3e9c1b19-2246-40e6-b2a3-9e8daf38d18f" x="0" y="0" width="572" height="1"/>
+			</line>
+			<textField>
+				<reportElement uuid="bd638ef6-8631-4acc-92bb-24edea4683ba" x="165" y="30" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tersangka}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="218" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="2b3a9791-283d-4bed-bab3-b20512e5164d" x="373" y="14" width="59" height="20"/>
+				<textElement/>
+				<text><![CDATA[KEPALA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="688c64b2-e038-48c1-b500-92bede09feb3" x="412" y="110" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Pangkat / NIP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="caee0c68-4bf7-4e27-8337-0e0b1ae72d06" x="532" y="14" width="18" height="20"/>
+				<textElement/>
+				<text><![CDATA[+)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e82363f5-4a75-4706-85b4-e9d30dead9c5" x="28" y="70" width="118" height="20"/>
+				<textElement/>
+				<text><![CDATA[TEMBUSAN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="457ba9d5-99e5-4846-9bbf-18bf604bb992" x="28" y="163" width="118" height="34"/>
+				<textElement/>
+				<text><![CDATA[*) Coret yang tidak perlu
++) Diisi Kejaksaan Tinggi/Negeri]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="8c271754-860a-4f4e-a044-9217d173fefd" x="432" y="14" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{jaksa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="b013b940-0b3b-4773-9971-183c790bac6d" x="402" y="90" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{pangkat}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement uuid="e1ba1459-aab0-48ad-9a98-070e3fbfe2d2" x="28" y="90" width="153" height="73"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="dataset1" uuid="65813f2e-6b97-47fe-8f57-c8d32d25287c">
+						<datasetParameter name="idperkara">
+							<datasetParameterExpression><![CDATA[$P{id_perkara}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="73" width="153">
+						<textField>
+							<reportElement uuid="bf0c1d15-d538-48ab-b5a1-6cb5180ac46e" x="0" y="0" width="100" height="20"/>
+							<textElement/>
+							<textFieldExpression><![CDATA[$F{keterangan}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+		</band>
+	</pageFooter>
+</jasperReport>

@@ -1,0 +1,21 @@
+<?php
+
+use yii\helpers\Html;
+
+/* @var $this yii\web\View */
+/* @var $model app\modules\pidum\models\PdmB9 */
+
+$this->title = $sysMenu->kd_berkas;
+$this->subtitle = $sysMenu->keterangan;
+?>
+<div class="pdm-b9-update">
+
+    <?= $this->render('_form', [
+        'model' => $model,
+        'searchPetugas' => $searchPetugas,
+        'dataPetugas' => $dataPetugas,
+        'modeljaksi' => $modeljaksi,
+        'modelBarbuk' => $modelBarbuk,
+    ]) ?>
+
+</div>

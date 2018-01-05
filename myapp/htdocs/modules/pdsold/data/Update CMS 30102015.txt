@@ -1,0 +1,29 @@
+Dear Maz Angga,
+
+Melalui email ini ada beberapa yang ingin saya infokan mengenai perkembangan Aplikasi CMS PIDUM
+
+1.Untuk aplikasi CMS PIDUM Per Tanggal 30 Oktober 2015, telah terupdate pada server kejagung dengan Menu;
+
+BA-23 Berita Acara Pemusnahan Barang Bukti
+B-18  Surat Perintah Pelimpahan Barang Rampasan
+D-4   Surat Perintaah Penyerahan Denda
+BA-19 Berita Acara pelaksanaan Putusan Perampasan
+BA-17 Berita Acara Penitipan Barang Bukti   
+BA-16 Berita Acara penggeledahan  / penyitaan
+p-44  Laporan Jaksa Penuntut Umum Segera setelah Putusan
+P-40  Perlawanan Jaksa Penuntut Umum terhadap Penetapan Ketua PN / Penetapan Hakim
+BA-8  Berita Acara Pelaksanaan Putusan Pengadilan
+P-48  Surat Perintah Pelaksanaan Putusan Pengadilan
+P-35  Laporan Pelimpahan Perkara Pengamanan Persidangan
+P-36  Permintaan Bantuan Pengawalan / Pengamanan Persidangan
+P-37  Surat Panggilan Saksi Ahli / Terdakwa / Terpidana
+P-38  Bantuan Panggilan Saksi / Tersngka / terdakwa
+P-39  Laporan Hasil Persidangan
+
+2. Adapun beberapa persuratan yang sedang dalam pengerjaan, yaitu :
+- B-10 Kartu Barang Bukti
+- P-39 Laporan hasil Sidang
+- Dashboard
+
+
+Demikian yang saya dapat sampaikan, jika ada kekurangan mohon diinfokan

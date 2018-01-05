@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="P-18" language="groovy" pageWidth="595" pageHeight="690" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="934bc1e3-d931-4d72-929c-1e504e88e510">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="wilayah_kerja" uuid="729b57e3-effa-4d1d-b0a9-a3adc7f527b6">
+		<parameter name="id_perkara" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="wilayah_kerja" class="java.lang.String"/>
+		<queryString>
+			<![CDATA[select inst_nama, inst_lokinst from kepegawaian.kp_inst_satker where inst_satkerkd =  $P{wilayah_kerja}]]>
+		</queryString>
+		<field name="inst_nama" class="java.lang.String"/>
+		<field name="inst_lokinst" class="java.lang.String"/>
+	</subDataset>
+	<subDataset name="nama_tersangka" uuid="693cdfdf-52c5-4773-a995-4ab3482be955">
+		<parameter name="id_perkara" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[select nama from pidum.ms_tersangka
+where id_perkara=$P{id_perkara}]]>
+		</queryString>
+		<field name="nama" class="java.lang.String"/>
+	</subDataset>
+	<subDataset name="penandatangan" uuid="e45cb563-0f5f-4232-85e3-e9c3ffee0acb">
+		<parameter name="id_penandatangan" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[select peg_nik,nama from pidum.vw_penandatangan
+where peg_nik=$P{id_penandatangan}]]>
+		</queryString>
+		<field name="peg_nik" class="java.lang.String"/>
+		<field name="nama" class="java.lang.String"/>
+	</subDataset>
+	<subDataset name="tembusan" uuid="c37ee1fd-a0d4-4649-84ed-4446c105d5ad">
+		<parameter name="id_perkara" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[Select keterangan from pidum.pdm_tembusan
+where id_perkara=$P{id_perkara} and kode_table='P-18']]>
+		</queryString>
+		<field name="keterangan" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="id_perkara" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     a."no_surat",
+     a."sifat",
+     a."lampiran",
+     a."di",
+     c."nama",
+     a."kepada",
+     tanggal_tulisan(a.tgl_surat)as tgl,
+     tanggal_tulisan (d.tgl_terima)as tgl_terima,
+     d."wilayah_kerja",
+     d."undang_pasal",
+     a."id_perkara",
+     a."id_penandatangan"
+FROM
+     "pidum"."pdm_p18" a
+     INNER JOIN "pidum"."pdm_p24" b ON a."id_p24" = b."id_p24"
+     INNER JOIN "pidum"."ms_tersangka" c ON a."id_perkara" = c."id_perkara"
+     INNER JOIN "pidum"."pdm_spdp" d ON a."id_perkara" = d."id_perkara"
+]]>
+	</queryString>
+	<field name="no_surat" class="java.lang.String"/>
+	<field name="sifat" class="java.lang.String"/>
+	<field name="lampiran" class="java.lang.String"/>
+	<field name="di" class="java.lang.String"/>
+	<field name="nama" class="java.lang.String"/>
+	<field name="kepada" class="java.lang.String"/>
+	<field name="tgl" class="java.lang.String"/>
+	<field name="tgl_terima" class="java.lang.String"/>
+	<field name="wilayah_kerja" class="java.lang.String"/>
+	<field name="undang_pasal" class="java.lang.String"/>
+	<field name="id_perkara" class="java.lang.String"/>
+	<field name="id_penandatangan" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="650" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="6802ef9c-71cc-489b-98d7-2fdd6a084413" x="349" y="96" width="100" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[KEPADA YTH.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9206b5cb-0fc3-4aa7-87ca-cca19e1bcae7" x="8" y="581" width="321" height="19"/>
+				<textElement>
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[*) Kalau ditanda tangani oleh Kasi Pidum atau Kacabjari ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="bbe7486e-2f05-47cf-b220-37079653f4bb" x="323" y="484" width="64" height="20"/>
+				<textElement>
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[Pangkat/Nip:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2163c5d9-e006-4b88-adf8-7f62add99ac7" x="4" y="484" width="65" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tembusan:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6c440b43-30f9-496e-b01a-d6200e0b29d7" x="323" y="464" width="6" height="20"/>
+				<textElement>
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[(                                                                  ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9206b5cb-0fc3-4aa7-87ca-cca19e1bcae7" x="8" y="600" width="393" height="16"/>
+				<textElement>
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[    tembusannya disampaikan juga kepada Kajari.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d7be8ff0-f322-4a53-92de-50d3eb623385" x="349" y="179" width="16" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Di-]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="43155df7-2402-44f4-a0a6-2fcc04951b8f" x="100" y="116" width="159" height="20"/>
+				<textElement textAlignment="Justified">
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[Hasil Penyidikan atas nama:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="43155df7-2402-44f4-a0a6-2fcc04951b8f" x="0" y="76" width="100" height="20"/>
+				<textElement>
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[Sifat		:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="43155df7-2402-44f4-a0a6-2fcc04951b8f" x="0" y="56" width="100" height="20"/>
+				<textElement>
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[Nomor		:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="10e64400-580b-465f-95b8-8a295ae4d0d6" x="0" y="359" width="455" height="17"/>
+				<textElement textAlignment="Justified">
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[	Demikian untuk dimaklumi.]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="5555f1d4-c5f6-4f95-a214-518ddc5bfd77" x="323" y="484" width="200" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="6c440b43-30f9-496e-b01a-d6200e0b29d7" x="323" y="424" width="234" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[ ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c2d8d057-3a3b-4c5e-93df-edec9cbf55f8" x="323" y="404" width="232" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[KEPALA KEJAKSAAN TINGGI/NEGERI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="10e64400-580b-465f-95b8-8a295ae4d0d6" x="34" y="254" width="373" height="20"/>
+				<textElement textAlignment="Justified">
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[	Sehubungan penyerahan berkas perkara pidana atas nama tersangka  ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="10e64400-580b-465f-95b8-8a295ae4d0d6" x="0" y="343" width="455" height="16"/>
+				<textElement textAlignment="Justified">
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[	Pengembalian berkas beserta petunjuknya menyusul]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="73f29ea4-ff7d-4261-8984-57ab58510aea" x="349" y="199" width="206" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="43155df7-2402-44f4-a0a6-2fcc04951b8f" x="0" y="116" width="100" height="20"/>
+				<textElement>
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[Perihal		:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a619b16c-1988-4d6c-b860-ba50ba5d8c03" x="349" y="56" width="206" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[ ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="43155df7-2402-44f4-a0a6-2fcc04951b8f" x="0" y="96" width="100" height="20"/>
+				<textElement>
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[Lampiran	:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9206b5cb-0fc3-4aa7-87ca-cca19e1bcae7" x="0" y="616" width="407" height="16"/>
+				<textElement>
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[**) Cukup disampaikan kepada atasan langsung dari penerima surat ini.]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="374368ac-d572-4553-8fbf-829e48aa18cc" x="100" y="56" width="159" height="20"/>
+				<textElement>
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{no_surat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="b061192f-8284-4e61-805f-8af618b6f6ae" x="100" y="76" width="159" height="20"/>
+				<textElement>
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sifat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="2d7e528c-fb82-49a0-bf46-45fc7b0e54e8" x="100" y="96" width="159" height="20"/>
+				<textElement>
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{lampiran}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="16a95f02-d709-4b62-aec4-65f2e6075944" x="365" y="179" width="190" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{di}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="aacaf4e0-1027-437b-9a01-583b65c8a92b" x="100" y="136" width="100" height="20"/>
+				<textElement>
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nama}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="25da5ac5-00e8-49ad-87eb-1253089fa32f" x="349" y="116" width="206" height="63"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kepada}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="ab31cb66-4973-416c-ad36-8dc7e7d863f8" x="45" y="274" width="65" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{no_surat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="6cadc35c-33e4-4d18-b5d5-42f932382aa0" x="100" y="176" width="159" height="20"/>
+				<textElement>
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{undang_pasal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="c294e479-7fce-489b-8858-bb7673b7891d" x="512" y="0" width="43" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[P-18]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement uuid="b3c86877-c1f7-4a69-bda8-e866ce3de3f0" x="2" y="0" width="312" height="20"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="wilayah_kerja" uuid="85648bf1-3f35-4b51-800e-d7cd53002352">
+						<datasetParameter name="wilayah_kerja">
+							<datasetParameterExpression><![CDATA[$F{wilayah_kerja}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="20" width="312">
+						<textField>
+							<reportElement uuid="52ca6405-527a-44e8-88a2-656f2c6c68c8" x="0" y="0" width="312" height="20"/>
+							<textElement>
+								<font isBold="true"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{inst_nama}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<componentElement>
+				<reportElement uuid="caba16b4-4825-4fc0-bc1e-6b01bd4fb4da" x="329" y="464" width="200" height="42"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="penandatangan" uuid="62638089-0cec-4fd4-bbe7-bfed87256990">
+						<datasetParameter name="id_penandatangan">
+							<datasetParameterExpression><![CDATA[$F{id_penandatangan}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="42" width="200">
+						<textField>
+							<reportElement uuid="e0f40a86-9088-4e94-81ab-be0999b04dcb" x="0" y="0" width="185" height="20"/>
+							<textElement>
+								<font fontName="SansSerif" size="10"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{nama}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement uuid="cd24f823-fc22-408a-927f-295907c20ab6" x="60" y="20" width="134" height="20"/>
+							<textElement>
+								<font fontName="SansSerif" size="10"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{peg_nik}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<componentElement>
+				<reportElement uuid="e589fa63-f846-47c3-b16b-90f3d7bf64bb" x="3" y="504" width="135" height="20"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="tembusan" uuid="dcb95039-6d13-4334-a0c2-49105dfc4a0b">
+						<datasetParameter name="id_perkara">
+							<datasetParameterExpression><![CDATA[$F{id_perkara}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="20" width="135">
+						<textField>
+							<reportElement uuid="ded1386e-4f96-4cdc-8bc4-8d2d8a8bd6ae" x="0" y="0" width="135" height="20"/>
+							<textElement>
+								<font fontName="Times New Roman" size="12"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{keterangan}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<staticText>
+				<reportElement uuid="3d9c8811-84e3-4d78-af35-85a2cf2b3075" x="200" y="136" width="77" height="20"/>
+				<textElement>
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[yang disangka ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a21b1033-c00f-4c6b-94c8-208f924ca9b5" x="100" y="196" width="100" height="20"/>
+				<textElement>
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[belum lengkap.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b7fe3bd1-f0b2-4d37-a208-54be1055af07" x="0" y="294" width="544" height="33"/>
+				<textElement/>
+				<text><![CDATA[setelah kami lakukan penelitian sesuai dengan pasal 110 dan 138 (1) KUHAP, ternyata hasil penyidikannya belum lengkap.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="0c3783ec-e4c9-48e5-aba2-9a2dcf03ca55" x="242" y="274" width="152" height="20"/>
+				<textElement/>
+				<text><![CDATA[yang kami terima pada tanggal ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="dbc2398c-e9b8-4797-9912-11d403c9d0f5" x="110" y="274" width="43" height="20"/>
+				<textElement/>
+				<text><![CDATA[ tanggal ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6dc27562-7a13-42a1-940e-95f1433cceb6" x="4" y="274" width="41" height="20"/>
+				<textElement/>
+				<text><![CDATA[Nomor : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="27bd9d8f-d88a-4f34-bff0-ade38cc3688c" x="100" y="156" width="100" height="20"/>
+				<textElement>
+					<font fontName="SansSerif"/>
+				</textElement>
+				<text><![CDATA[melanggar pasal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d244047c-9f12-4543-87f0-5994259cbf25" x="200" y="196" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[ ]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="74fd1cd5-a98d-46c1-bc01-bbb862fa501b" x="407" y="254" width="122" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{nama}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="6c440b43-30f9-496e-b01a-d6200e0b29d7" x="514" y="464" width="6" height="20"/>
+				<textElement>
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[)]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="3d098ce1-8295-4c80-bdae-385e8dae2523" x="153" y="274" width="89" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tgl}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="a829d39f-94ed-4535-a98a-401dd8cc4e5f" x="394" y="274" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tgl_terima}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="P-17" language="groovy" pageWidth="595" pageHeight="750" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4e948c4f-1a15-4a5f-ba88-5f0d3d7061f6">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="214"/>
+	<parameter name="idperkara" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select
+p17.perihal,
+p17.tgl_surat::text,
+p17.sifat,
+p17.lampiran,
+p17.no_surat,
+p17.kepada,
+p17.di,
+spdp.undang_pasal,
+spdp.no_surat as spdp,
+spdp.tgl_terima :: text,
+ter.nama as tersangka,
+inst.inst_nama,
+jaksa.pangkat,
+jaksa.nip,
+jaksa.nama
+
+from pidum.pdm_p17 p17
+left join pidum.pdm_spdp spdp on(p17.id_perkara=spdp.id_perkara)
+left join pidum.ms_tersangka ter on (p17.id_perkara = ter.id_perkara)
+
+inner join kepegawaian.kp_inst_satker inst ON spdp.wilayah_kerja = inst.inst_satkerkd
+INNER JOIN "pidum"."pdm_jaksa_saksi" jaksa ON p17."id_perkara" = jaksa."id_perkara"
+where p17.id_perkara=$P{idperkara}]]>
+	</queryString>
+	<field name="perihal" class="java.lang.String"/>
+	<field name="tgl_surat" class="java.lang.String"/>
+	<field name="sifat" class="java.lang.String"/>
+	<field name="lampiran" class="java.lang.String"/>
+	<field name="no_surat" class="java.lang.String"/>
+	<field name="kepada" class="java.lang.String"/>
+	<field name="di" class="java.lang.String"/>
+	<field name="undang_pasal" class="java.lang.String"/>
+	<field name="spdp" class="java.lang.String"/>
+	<field name="tgl_terima" class="java.lang.String"/>
+	<field name="tersangka" class="java.lang.String"/>
+	<field name="inst_nama" class="java.lang.String"/>
+	<field name="pangkat" class="java.lang.String"/>
+	<field name="nip" class="java.lang.String"/>
+	<field name="nama" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="710" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="43155df7-2402-44f4-a0a6-2fcc04951b8f" x="0" y="57" width="89" height="20"/>
+				<textElement>
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[Nomor		:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="43155df7-2402-44f4-a0a6-2fcc04951b8f" x="0" y="77" width="89" height="20"/>
+				<textElement>
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[Sifat		:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="43155df7-2402-44f4-a0a6-2fcc04951b8f" x="0" y="97" width="89" height="20"/>
+				<textElement>
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[Lampiran	:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="43155df7-2402-44f4-a0a6-2fcc04951b8f" x="0" y="116" width="89" height="20"/>
+				<textElement>
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[Perihal		:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="43155df7-2402-44f4-a0a6-2fcc04951b8f" x="89" y="116" width="159" height="20"/>
+				<textElement textAlignment="Justified">
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[Permintaan Perkembangan Hasil            ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a619b16c-1988-4d6c-b860-ba50ba5d8c03" x="89" y="136" width="159" height="20"/>
+				<textElement>
+					<font fontName="SansSerif" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Penyidikan atas nama             ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a619b16c-1988-4d6c-b860-ba50ba5d8c03" x="309" y="56" width="206" height="20"/>
+				<textElement>
+					<font fontName="SansSerif" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[ ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6802ef9c-71cc-489b-98d7-2fdd6a084413" x="309" y="76" width="100" height="20"/>
+				<textElement>
+					<font fontName="SansSerif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[KEPADA YTH.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d7be8ff0-f322-4a53-92de-50d3eb623385" x="309" y="116" width="16" height="20"/>
+				<textElement>
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[Di-]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="73f29ea4-ff7d-4261-8984-57ab58510aea" x="325" y="156" width="206" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="10e64400-580b-465f-95b8-8a295ae4d0d6" x="35" y="227" width="417" height="20"/>
+				<textElement textAlignment="Justified">
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[Sehubungan dengan Surat Pemberitahuan dimulainya Penyidikan atas nama tersangka  ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="10e64400-580b-465f-95b8-8a295ae4d0d6" x="2" y="287" width="455" height="34"/>
+				<textElement textAlignment="Justified">
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[	Mengingat Surat Pemberitahuan dimulainya Penyidikan sudah kami terima cukup lama, dengan ini kami minta perkembangan penyidikan perkara tersebut.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="10e64400-580b-465f-95b8-8a295ae4d0d6" x="71" y="333" width="135" height="17"/>
+				<textElement textAlignment="Justified">
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[Demikian untuk dimaklumi.]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="5555f1d4-c5f6-4f95-a214-518ddc5bfd77" x="323" y="484" width="208" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="bbe7486e-2f05-47cf-b220-37079653f4bb" x="325" y="485" width="67" height="20"/>
+				<textElement>
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[pangkat/Nip :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c2d8d057-3a3b-4c5e-93df-edec9cbf55f8" x="315" y="399" width="232" height="20"/>
+				<textElement>
+					<font fontName="SansSerif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[KEPALA KEJAKSAAN TINGGI/NEGERI  ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9206b5cb-0fc3-4aa7-87ca-cca19e1bcae7" x="2" y="635" width="333" height="16"/>
+				<textElement>
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[*) Cukup disampaikan kepada atasan langsung dari penerima surat ini]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ef796f7c-164d-48e1-8924-85c54181261b" x="2" y="571" width="49" height="20"/>
+				<textElement>
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[3. Arsip]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ef796f7c-164d-48e1-8924-85c54181261b" x="2" y="531" width="159" height="20"/>
+				<textElement>
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[1. Yth Kepala Kejaksaan Tinggi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ef796f7c-164d-48e1-8924-85c54181261b" x="2" y="551" width="187" height="20"/>
+				<textElement>
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[2. Yth Kapolda - Kapolwil - Kapolres ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2163c5d9-e006-4b88-adf8-7f62add99ac7" x="2" y="511" width="65" height="20"/>
+				<textElement>
+					<font fontName="SansSerif" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tembusan:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9206b5cb-0fc3-4aa7-87ca-cca19e1bcae7" x="2" y="651" width="125" height="16"/>
+				<textElement>
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[+) Coret yang tidak perlu]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d7706116-8127-439d-a04b-69f36184b306" x="189" y="156" width="77" height="20"/>
+				<textElement>
+					<font fontName="SansSerif"/>
+				</textElement>
+				<text><![CDATA[  yang disangka  ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d7706116-8127-439d-a04b-69f36184b306" x="89" y="176" width="117" height="20"/>
+				<textElement>
+					<font fontName="SansSerif"/>
+				</textElement>
+				<text><![CDATA[melanggar pasal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="469643da-b04f-41a0-a61e-e29520eb7797" x="2" y="267" width="343" height="20"/>
+				<textElement>
+					<font fontName="SansSerif"/>
+				</textElement>
+				<text><![CDATA[hingga saat ini kami belum menerima hasil penyidikan perkara tersebut.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5b290a90-5696-41c1-8b73-f9ed2e5e23e4" x="285" y="247" width="152" height="20"/>
+				<textElement>
+					<font fontName="SansSerif"/>
+				</textElement>
+				<text><![CDATA[yang kami terima pada tanggal  ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b57c452d-4cf4-4ddb-85d7-dd70a7fa2093" x="150" y="247" width="39" height="20"/>
+				<textElement>
+					<font fontName="SansSerif"/>
+				</textElement>
+				<text><![CDATA[tanggal  ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="56f8a0e2-619b-4934-8752-1ceb1c71dee8" x="2" y="247" width="33" height="20"/>
+				<textElement>
+					<font fontName="SansSerif"/>
+				</textElement>
+				<text><![CDATA[Nomor]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="6e6b5ca2-8a64-4a24-b5ce-c37195698eee" x="89" y="57" width="159" height="20"/>
+				<textElement>
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{no_surat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="33cd77b1-9d23-48cb-b5b8-8e0c7aa5a756" x="89" y="77" width="159" height="20"/>
+				<textElement>
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sifat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="cf632654-e914-4ec1-81bc-1ad05c48a12f" x="89" y="96" width="159" height="20"/>
+				<textElement>
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{lampiran}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d4c4ded2-e6fc-4f19-8dde-9b6551cc08ef" x="89" y="156" width="100" height="20"/>
+				<textElement>
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tersangka}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="067970b0-ddb5-448c-a3b3-95e3e92aa4ee" x="325" y="136" width="206" height="20"/>
+				<textElement>
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{di}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="38e44349-d3fd-45ab-a731-3d9abeaccbbf" x="309" y="96" width="222" height="20"/>
+				<textElement>
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kepada}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="1556a197-d77d-4329-acd8-3543f9c68a21" x="35" y="247" width="115" height="20"/>
+				<textElement>
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{no_surat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d4c4ded2-e6fc-4f19-8dde-9b6551cc08ef" x="452" y="227" width="103" height="20"/>
+				<textElement>
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tersangka}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="48c57bc7-9737-4660-8353-6f5b131e783f" x="2" y="0" width="323" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{inst_nama}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d23a7752-232d-4229-823e-782c8d0c5207" x="161" y="531" width="234" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{inst_nama}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="4dd3debf-9b54-4496-a556-0f27f536cde9" x="325" y="465" width="10" height="20"/>
+				<textElement/>
+				<text><![CDATA[(]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4dd3debf-9b54-4496-a556-0f27f536cde9" x="521" y="465" width="10" height="20"/>
+				<textElement/>
+				<text><![CDATA[)]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="d23a7752-232d-4229-823e-782c8d0c5207" x="315" y="419" width="232" height="20"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{inst_nama}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="e2875a90-c5cc-457d-8fdf-7f7b93cefb8f" x="392" y="485" width="139" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{pangkat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="439ce69e-6634-42cb-9fb4-c6bc146466d9" x="437" y="247" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tgl_terima}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="3abe65d9-2449-4226-bc69-793f6810d9b6" x="189" y="247" width="96" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tgl_surat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="3e2eee5f-b3e9-478d-afe8-3112c3a5f3d0" x="335" y="465" width="186" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{nama}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

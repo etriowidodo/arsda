@@ -1,0 +1,121 @@
+/* iCheck plugin Square skin, blue
+----------------------------------- */
+.icheckbox_square-blue,
+.iradio_square-blue {
+    display: inline-block;
+    *display: inline;
+    vertical-align: middle;
+    margin: 0 5px 0 0;
+    padding: 0;
+    width: 22px;
+    height: 22px;
+    background: url("./images/blue.png") no-repeat;
+    border: none;
+    cursor: pointer;
+}
+
+.icheckbox_square-blue {
+    background-position: 0 0;
+}
+    .icheckbox_square-blue.hover {
+        background-position: -24px 0;
+    }
+    .icheckbox_square-blue.checked {
+        background-position: -48px 0;
+    }
+    .icheckbox_square-blue.disabled {
+        background-position: -72px 0;
+        cursor: default;
+    }
+    .icheckbox_square-blue.checked.disabled {
+        background-position: -96px 0;
+    }
+
+.iradio_square-blue {
+    background-position: -120px 0;
+}
+    .iradio_square-blue.hover {
+        background-position: -144px 0;
+    }
+    .iradio_square-blue.checked {
+        background-position: -168px 0;
+    }
+    .iradio_square-blue.disabled {
+        background-position: -192px 0;
+        cursor: default;
+    }
+    .iradio_square-blue.checked.disabled {
+        background-position: -216px 0;
+    }
+
+/* HiDPI support */
+@media (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
+    .icheckbox_square-blue,
+    .iradio_square-blue {
+        background-image: url("./images/blue@2x.png");
+        -webkit-background-size: 240px 24px;
+        background-size: 240px 24px;
+    }
+}
+
+/* pink */
+.icheckbox_square-pink,
+.iradio_square-pink {
+    display: inline-block;
+    *display: inline;
+    vertical-align: middle;
+    margin: 0;
+    padding: 0;
+    width: 18px;
+    height: 18px;
+    background: url("./images/pink-18.png") no-repeat;
+    border: none;
+    cursor: pointer;
+}
+
+.icheckbox_square-pink {
+    background-position: 0 0;
+}
+.icheckbox_square-pink.hover {
+	background-position: -18px 0;
+}
+.icheckbox_square-pink.checked {
+	background-position: -36px 0;
+}
+.icheckbox_square-pink.disabled {
+	background-position: -54px 0;
+	cursor: default;
+}
+.icheckbox_square-pink.checked.disabled {
+	background-position: -72px 0;
+}
+
+.iradio_square-pink {
+    background-position: -90px 0;
+}
+.iradio_square-pink.hover {
+	background-position: -108px 0;
+}
+.iradio_square-pink.checked {
+	background-position: -126px 0;
+}
+.iradio_square-pink.disabled {
+	background-position: -144px 0;
+	cursor: default;
+}
+.iradio_square-pink.checked.disabled {
+	background-position: -162px 0;
+}
+
+/* Retina support 
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+only screen and (-moz-min-device-pixel-ratio: 1.5),
+only screen and (-o-min-device-pixel-ratio: 3/2),
+only screen and (min-device-pixel-ratio: 1.5) {
+	.icheckbox_square-pink,
+	.iradio_square-pink {
+		background-image: url("./images/pink@2x.png");
+		-webkit-background-size: 180px 18px;
+		background-size: 180px 18px;
+	}
+}*/

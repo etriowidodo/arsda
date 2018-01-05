@@ -1,0 +1,152 @@
+@charset "utf-8";
+/* CSS Document */
+
+.panel-success {
+  border-color: #fcc178;
+  /*box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.30);*/
+}
+.panel-success > .panel-heading {
+  color: #d73925;
+  /*background-image: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(209, 209, 210, 1) 100%);*/
+  border-color: #fbcb90;
+  background-image: linear-gradient(to bottom, rgba(255, 223, 183, 1) 0%, rgba(253, 225, 190, 1) 100%);
+}
+.panel-success > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color: #d6e9c6;
+}
+.panel-success > .panel-heading .badge {
+  color: #dff0d8;
+  background-color: #3c763d;
+}
+.panel-success > .panel-footer + .panel-collapse > .panel-body {
+  border-bottom-color: #d6e9c6;
+}
+.table > caption + thead > tr:first-child > th, .table > colgroup + thead > tr:first-child > th, .table > thead:first-child > tr:first-child > th, .table > caption + thead > tr:first-child > td, .table > colgroup + thead > tr:first-child > td, .table > thead:first-child > tr:first-child > td {
+  background-image: linear-gradient(to bottom, rgba(255, 223, 183, 1) 0%, rgba(253, 225, 190, 1) 100%);
+  border: 1px solid #fbcb90 !important;
+  color: #d73925;
+}
+.table-bordered > thead > tr > th, .table-bordered > thead > tr > td {
+    background-image: linear-gradient(to bottom, rgba(234, 233, 233, 1) 0%, rgba(216, 215, 215, 1) 100%);
+}
+.table-bordered>thead>tr>th, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>tbody>tr>td, .table-bordered>tfoot>tr>td {
+	border:1px solid #d2d3d3 !important;
+}
+.form-control:focus {
+	border-color:#f79e2f !important;
+	box-shadow:none
+}
+.content-wrapper-1 {
+    margin: 0px;
+    padding: 10px;
+    box-shadow: 0 0 5px 0 #aaaaaa inset;
+    overflow: hidden;
+    border-radius: 4px;
+}
+table th a {
+	color:#d73925 !important;
+}
+table th a:hover {
+	text-decoration:underline;
+}
+.panel-primary > .panel-heading {
+    background-image: linear-gradient(to bottom, rgba(253, 194, 98, 1) 0%, rgba(255, 213, 146, 1) 100%);
+    /*border-color: #f39c12 !important;*/
+    color: #fff;
+}
+.panel-primary {
+    border-color: #ffd48f !important;
+}
+
+/*btn-icon*/
+
+.tembusan {
+	background: url(../image/add-tembusan.png) no-repeat left #00a65a;
+	border-color:#008d4c;
+	padding: 5px 5px 5px 35px;
+	margin-top:10px;
+}
+
+.delete {
+    background: url(../image/delete-icon.png) no-repeat center #dd4b39;
+    border-color: #d73925;
+	padding: 5px 5px 5px 25px;
+	/*margin-top:10px;*/
+}
+
+.edit {
+    background: url(../image/edit.png) no-repeat center #dd4b39;
+    border-color: #d73925;
+  padding: 5px 5px 5px 25px;
+  /*margin-top:10px;*/
+}
+
+.add {
+    background: url(../image/add-tembusan.png) no-repeat left #3c8dbc;
+    border-color: #367fa9;
+  padding: 5px 5px 5px 35px;
+}
+
+.addJPU2 {
+    background: url(../image/addJPU2-icon.png) no-repeat left #3c8dbc;
+    border-color: #367fa9;
+	padding: 5px 5px 5px 35px;
+}
+
+.tambah-tersangka {
+    background: url(../image/tambah_tersangka_icon.png) no-repeat left #3c8dbc;
+    border-color: #367fa9;
+	padding: 5px 5px 5px 35px;
+}
+
+table tr:hover{cursor:pointer;}
+
+/*btn-icon end*/
+
+.box-footer {
+	background-color:none !important;
+	text-align:center !important;
+}
+
+.panel-footer {
+  padding: 10px 15px;
+  background-color: #f5f5f5;
+  border-top: 1px solid #ddd;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  text-align:center !important;
+}
+
+.modal-footer {
+    text-align: center !important;
+	padding: 0px !important;
+	border: none !important;
+}
+
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+	background-color: #f39c12 !important;
+    border-color: #e08e0b;
+    color: #fff;
+    cursor: default;
+    z-index: 2;
+}
+
+.skin-yellow .main-header .navbar .nav>li>a:hover, .skin-yellow .main-header .navbar .nav>li>a:active, .skin-yellow .main-header .navbar .nav>li>a:focus, .skin-yellow .main-header .navbar .nav .open>a, .skin-yellow .main-header .navbar .nav .open>a:hover, .skin-yellow .main-header .navbar .nav .open>a:focus {
+    background-image: linear-gradient(to bottom, rgba(255, 175, 77, 1) 0%, rgba(220, 148, 60, 1) 100%) !important;
+    color:#f6f6f6
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

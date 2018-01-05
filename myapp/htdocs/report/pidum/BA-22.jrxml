@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="BA-22" language="groovy" pageWidth="612" pageHeight="1050" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c103d20d-2b3e-4e38-838a-b39a5e5ee774">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="157" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="439a4c57-ac14-476e-a50d-3161e448e564" x="16" y="17" width="69" height="20"/>
+				<textElement/>
+				<text><![CDATA[KEJAKSAAN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="edef7b33-f24b-4fb1-94ab-69a907927379" x="16" y="37" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA["UNTUK KEADILAN"]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="edef7b33-f24b-4fb1-94ab-69a907927379" x="85" y="17" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[ ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="72b4444c-5b30-4027-9716-89bc566f80ce" x="248" y="51" width="84" height="20"/>
+				<textElement/>
+				<text><![CDATA[BERITA ACARA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="edef7b33-f24b-4fb1-94ab-69a907927379" x="129" y="71" width="320" height="20"/>
+				<textElement/>
+				<text><![CDATA[PENYERAHAN BARANG SITAAN YANG BERSIFAT TERLARANG/]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="67299a61-0f8c-4365-9a0c-059691f72138" x="139" y="91" width="300" height="20"/>
+				<textElement/>
+				<text><![CDATA[BARANG RAMPASAN/BARANG BUKTI YANG DIKEMBALIKAN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="59867482-60ed-476b-ad5c-48f87814e9db" x="185" y="111" width="216" height="20"/>
+				<textElement/>
+				<text><![CDATA[TETAPI TIDAK DIAMBIL/BARANG TEMUAN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c7a3358b-cf68-4bcd-accc-9d4dfd97b15a" x="191" y="131" width="204" height="20"/>
+				<textElement/>
+				<text><![CDATA[UNTUK DIMANFAATAN/DIMUSNAHKAN *)]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="852" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="9921fa1d-8fb3-46ee-b000-fe68733cdb3d" x="29" y="17" width="66" height="20"/>
+				<textElement/>
+				<text><![CDATA[Pada hari ini]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="edef7b33-f24b-4fb1-94ab-69a907927379" x="95" y="17" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[ ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9921fa1d-8fb3-46ee-b000-fe68733cdb3d" x="195" y="17" width="42" height="20"/>
+				<textElement/>
+				<text><![CDATA[Tanggal ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="edef7b33-f24b-4fb1-94ab-69a907927379" x="237" y="17" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[ ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9921fa1d-8fb3-46ee-b000-fe68733cdb3d" x="337" y="17" width="34" height="20"/>
+				<textElement/>
+				<text><![CDATA[Tahun]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="edef7b33-f24b-4fb1-94ab-69a907927379" x="371" y="17" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[ ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9921fa1d-8fb3-46ee-b000-fe68733cdb3d" x="19" y="37" width="66" height="20"/>
+				<textElement/>
+				<text><![CDATA[Bertempat di]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="edef7b33-f24b-4fb1-94ab-69a907927379" x="85" y="37" width="286" height="20"/>
+				<textElement/>
+				<text><![CDATA[ ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9921fa1d-8fb3-46ee-b000-fe68733cdb3d" x="371" y="37" width="34" height="20"/>
+				<textElement/>
+				<text><![CDATA[Kami :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="45813f55-5daa-453d-bb59-813d4274f57c" x="116" y="90" width="424" height="20"/>
+				<textElement/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="45813f55-5daa-453d-bb59-813d4274f57c" x="105" y="70" width="11" height="20"/>
+				<textElement/>
+				<text><![CDATA[ : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="45813f55-5daa-453d-bb59-813d4274f57c" x="116" y="110" width="424" height="20"/>
+				<textElement/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d31c5b16-e698-466b-a8eb-fd52d0b296d7" x="33" y="110" width="72" height="20"/>
+				<textElement/>
+				<text><![CDATA[Jabatan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d31c5b16-e698-466b-a8eb-fd52d0b296d7" x="33" y="90" width="72" height="20"/>
+				<textElement/>
+				<text><![CDATA[Pangkat/NIP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="45813f55-5daa-453d-bb59-813d4274f57c" x="116" y="70" width="424" height="20"/>
+				<textElement/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="45813f55-5daa-453d-bb59-813d4274f57c" x="105" y="90" width="11" height="20"/>
+				<textElement/>
+				<text><![CDATA[ : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="45813f55-5daa-453d-bb59-813d4274f57c" x="105" y="110" width="11" height="20"/>
+				<textElement/>
+				<text><![CDATA[ : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d31c5b16-e698-466b-a8eb-fd52d0b296d7" x="33" y="70" width="72" height="20"/>
+				<textElement/>
+				<text><![CDATA[Nama ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a834115f-0699-4b24-98a8-ad000e0dde98" x="53" y="130" width="169" height="20"/>
+				<textElement/>
+				<text><![CDATA[Selanjutnya disebut pihak pertama]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9921fa1d-8fb3-46ee-b000-fe68733cdb3d" x="19" y="70" width="14" height="20"/>
+				<textElement/>
+				<text><![CDATA[1.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="45813f55-5daa-453d-bb59-813d4274f57c" x="113" y="180" width="424" height="20"/>
+				<textElement/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d31c5b16-e698-466b-a8eb-fd52d0b296d7" x="30" y="160" width="72" height="20"/>
+				<textElement/>
+				<text><![CDATA[Nama ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9921fa1d-8fb3-46ee-b000-fe68733cdb3d" x="16" y="160" width="14" height="20"/>
+				<textElement/>
+				<text><![CDATA[2.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="45813f55-5daa-453d-bb59-813d4274f57c" x="102" y="160" width="11" height="20"/>
+				<textElement/>
+				<text><![CDATA[ : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="45813f55-5daa-453d-bb59-813d4274f57c" x="113" y="180" width="424" height="20"/>
+				<textElement/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="45813f55-5daa-453d-bb59-813d4274f57c" x="102" y="200" width="11" height="20"/>
+				<textElement/>
+				<text><![CDATA[ : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d31c5b16-e698-466b-a8eb-fd52d0b296d7" x="30" y="200" width="72" height="20"/>
+				<textElement/>
+				<text><![CDATA[Jabatan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d31c5b16-e698-466b-a8eb-fd52d0b296d7" x="30" y="180" width="72" height="20"/>
+				<textElement/>
+				<text><![CDATA[Pangkat/NIP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="45813f55-5daa-453d-bb59-813d4274f57c" x="113" y="160" width="424" height="20"/>
+				<textElement/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a834115f-0699-4b24-98a8-ad000e0dde98" x="53" y="220" width="169" height="20"/>
+				<textElement/>
+				<text><![CDATA[Selanjutnya disebut pihak pertama]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="45813f55-5daa-453d-bb59-813d4274f57c" x="102" y="180" width="11" height="20"/>
+				<textElement/>
+				<text><![CDATA[ : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="45813f55-5daa-453d-bb59-813d4274f57c" x="113" y="200" width="424" height="20"/>
+				<textElement/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8ff2a3c1-ce23-4d41-9995-98cf5f05d50e" x="16" y="254" width="245" height="20"/>
+				<textElement/>
+				<text><![CDATA[Dalam Rangka Pelaksanaan Surat Perintah Kepala]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a8abd7a9-9219-40ed-8178-20d46bc45b5e" x="394" y="254" width="24" height="20"/>
+				<textElement/>
+				<text><![CDATA[No.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="45813f55-5daa-453d-bb59-813d4274f57c" x="261" y="254" width="133" height="20"/>
+				<textElement/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="45813f55-5daa-453d-bb59-813d4274f57c" x="418" y="254" width="119" height="20"/>
+				<textElement/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a8abd7a9-9219-40ed-8178-20d46bc45b5e" x="16" y="274" width="47" height="20"/>
+				<textElement/>
+				<text><![CDATA[Tanggal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="45813f55-5daa-453d-bb59-813d4274f57c" x="63" y="274" width="119" height="20"/>
+				<textElement/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a8abd7a9-9219-40ed-8178-20d46bc45b5e" x="182" y="274" width="122" height="20"/>
+				<textElement/>
+				<text><![CDATA[Dengan disaksikan oleh :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="45813f55-5daa-453d-bb59-813d4274f57c" x="113" y="324" width="424" height="20"/>
+				<textElement/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d31c5b16-e698-466b-a8eb-fd52d0b296d7" x="30" y="304" width="72" height="20"/>
+				<textElement/>
+				<text><![CDATA[Nama ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9921fa1d-8fb3-46ee-b000-fe68733cdb3d" x="16" y="304" width="14" height="20"/>
+				<textElement/>
+				<text><![CDATA[1.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="45813f55-5daa-453d-bb59-813d4274f57c" x="102" y="304" width="11" height="20"/>
+				<textElement/>
+				<text><![CDATA[ : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="45813f55-5daa-453d-bb59-813d4274f57c" x="113" y="344" width="424" height="20"/>
+				<textElement/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="45813f55-5daa-453d-bb59-813d4274f57c" x="102" y="344" width="11" height="20"/>
+				<textElement/>
+				<text><![CDATA[ : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d31c5b16-e698-466b-a8eb-fd52d0b296d7" x="30" y="344" width="72" height="20"/>
+				<textElement/>
+				<text><![CDATA[Jabatan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d31c5b16-e698-466b-a8eb-fd52d0b296d7" x="30" y="324" width="72" height="20"/>
+				<textElement/>
+				<text><![CDATA[Pangkat/NIP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="45813f55-5daa-453d-bb59-813d4274f57c" x="113" y="304" width="424" height="20"/>
+				<textElement/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="45813f55-5daa-453d-bb59-813d4274f57c" x="102" y="324" width="11" height="20"/>
+				<textElement/>
+				<text><![CDATA[ : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="45813f55-5daa-453d-bb59-813d4274f57c" x="101" y="374" width="11" height="20"/>
+				<textElement/>
+				<text><![CDATA[ : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="45813f55-5daa-453d-bb59-813d4274f57c" x="112" y="414" width="424" height="20"/>
+				<textElement/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="45813f55-5daa-453d-bb59-813d4274f57c" x="112" y="394" width="424" height="20"/>
+				<textElement/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="45813f55-5daa-453d-bb59-813d4274f57c" x="112" y="374" width="424" height="20"/>
+				<textElement/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d31c5b16-e698-466b-a8eb-fd52d0b296d7" x="29" y="414" width="72" height="20"/>
+				<textElement/>
+				<text><![CDATA[Jabatan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9921fa1d-8fb3-46ee-b000-fe68733cdb3d" x="16" y="374" width="14" height="20"/>
+				<textElement/>
+				<text><![CDATA[2.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="45813f55-5daa-453d-bb59-813d4274f57c" x="101" y="414" width="11" height="20"/>
+				<textElement/>
+				<text><![CDATA[ : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="45813f55-5daa-453d-bb59-813d4274f57c" x="101" y="394" width="11" height="20"/>
+				<textElement/>
+				<text><![CDATA[ : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d31c5b16-e698-466b-a8eb-fd52d0b296d7" x="30" y="374" width="72" height="20"/>
+				<textElement/>
+				<text><![CDATA[Nama ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d31c5b16-e698-466b-a8eb-fd52d0b296d7" x="29" y="394" width="72" height="20"/>
+				<textElement/>
+				<text><![CDATA[Pangkat/NIP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="cf91e26d-bdb3-4c2b-906a-7622a41c71d3" x="13" y="449" width="523" height="28"/>
+				<textElement/>
+				<text><![CDATA[       Pihak Pertama telah menyerahkan kepada Pihak Kedua dan Pihak Kedua telah menerima dari Pihak
+Pertama barang-barang berupa :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="71b972c1-12c3-4f61-a9a6-d15331b0ecd1" x="171" y="461" width="365" height="16"/>
+				<textElement/>
+				<text><![CDATA[ ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="dca484e0-2bc2-4832-8e4d-11fec640c27e" x="13" y="477" width="169" height="20"/>
+				<textElement/>
+				<text><![CDATA[untuk dimanfaatkan bagi keperluan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2eae6a23-58b7-45be-aedf-bcd97d376e6f" x="182" y="477" width="134" height="20"/>
+				<textElement/>
+				<text><![CDATA[ ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d31c5b16-e698-466b-a8eb-fd52d0b296d7" x="316" y="477" width="167" height="20"/>
+				<textElement/>
+				<text><![CDATA[atau dimusnahakan dengan cara]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2eae6a23-58b7-45be-aedf-bcd97d376e6f" x="13" y="497" width="131" height="20"/>
+				<textElement/>
+				<text><![CDATA[ ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2eae6a23-58b7-45be-aedf-bcd97d376e6f" x="144" y="497" width="204" height="20"/>
+				<textElement/>
+				<text><![CDATA[sehingga tidak dapat dipergunakan lagi.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="723cdd8b-5658-4b8e-a6e3-4e9b4068c3e9" x="13" y="533" width="523" height="28"/>
+				<textElement/>
+				<text><![CDATA[        Demikian Berita Acara Penyerahan Barang-barang ini dibuat dengan sebenarnya atas kekuatan
+sumpah jabatan, kemudian ditutup dan ditanda tangani pada hari dan tanggal tersebut diatas.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4024a4f6-3125-4f6c-810f-b40337d9b923" x="44" y="592" width="85" height="29"/>
+				<textElement/>
+				<text><![CDATA[Pihak Kedua/ yang menerima,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4024a4f6-3125-4f6c-810f-b40337d9b923" x="386" y="592" width="97" height="29"/>
+				<textElement/>
+				<text><![CDATA[Pihak Pertama/ yang menyerahkan,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1ceab7b0-4d0b-4b0c-b9a3-f3a9b8a752f9" x="507" y="661" width="9" height="20"/>
+				<textElement/>
+				<text><![CDATA[)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1ceab7b0-4d0b-4b0c-b9a3-f3a9b8a752f9" x="362" y="661" width="9" height="20"/>
+				<textElement/>
+				<text><![CDATA[(]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="99609c55-c281-4ee9-bc14-a5cf3b16a0fb" x="362" y="681" width="65" height="20"/>
+				<textElement/>
+				<text><![CDATA[Pangkat/NIP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="99609c55-c281-4ee9-bc14-a5cf3b16a0fb" x="371" y="661" width="136" height="20"/>
+				<textElement/>
+				<text><![CDATA[ ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="99609c55-c281-4ee9-bc14-a5cf3b16a0fb" x="427" y="681" width="80" height="20"/>
+				<textElement/>
+				<text><![CDATA[ ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1ceab7b0-4d0b-4b0c-b9a3-f3a9b8a752f9" x="20" y="661" width="9" height="20"/>
+				<textElement/>
+				<text><![CDATA[(]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="99609c55-c281-4ee9-bc14-a5cf3b16a0fb" x="29" y="661" width="136" height="20"/>
+				<textElement/>
+				<text><![CDATA[ ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1ceab7b0-4d0b-4b0c-b9a3-f3a9b8a752f9" x="165" y="661" width="9" height="20"/>
+				<textElement/>
+				<text><![CDATA[)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1ceab7b0-4d0b-4b0c-b9a3-f3a9b8a752f9" x="20" y="741" width="9" height="20"/>
+				<textElement/>
+				<text><![CDATA[(]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="99609c55-c281-4ee9-bc14-a5cf3b16a0fb" x="29" y="741" width="136" height="20"/>
+				<textElement/>
+				<text><![CDATA[ ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1ceab7b0-4d0b-4b0c-b9a3-f3a9b8a752f9" x="165" y="741" width="9" height="20"/>
+				<textElement/>
+				<text><![CDATA[)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="99609c55-c281-4ee9-bc14-a5cf3b16a0fb" x="20" y="701" width="136" height="20"/>
+				<textElement/>
+				<text><![CDATA[Saksi-Saksi :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="99609c55-c281-4ee9-bc14-a5cf3b16a0fb" x="20" y="721" width="13" height="20"/>
+				<textElement/>
+				<text><![CDATA[1.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="99609c55-c281-4ee9-bc14-a5cf3b16a0fb" x="33" y="721" width="136" height="20"/>
+				<textElement/>
+				<text><![CDATA[ ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="99609c55-c281-4ee9-bc14-a5cf3b16a0fb" x="19" y="805" width="136" height="20"/>
+				<textElement/>
+				<text><![CDATA[*) Coret yang tidak perlu.]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

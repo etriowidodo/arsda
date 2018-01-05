@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="p16.2" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5458fd07-bca1-4a1d-b3a0-c1bf990102a2">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="54"/>
+	<queryString>
+		<![CDATA[select a.nama, b.dikeluarkan, b.tgl_dikeluarkan
+from pidum.ms_tersangka a
+inner join pidum.pdm_p16 b on (a.id_perkara=b.id_perkara)]]>
+	</queryString>
+	<field name="nama" class="java.lang.String"/>
+	<field name="dikeluarkan" class="java.lang.String"/>
+	<field name="tgl_dikeluarkan" class="java.sql.Date"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="678" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="5ef23969-da33-4469-886a-5bf2121809bc" x="213" y="12" width="125" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Serif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MEMERINTAHKAN:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3d947a8f-eabd-47e1-b731-1aa76e019fc9" x="0" y="42" width="100" height="20"/>
+				<textElement>
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<text><![CDATA[Kepada	:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3acb3203-1b24-41ee-b26e-f7a3ffea5da4" x="100" y="42" width="24" height="20"/>
+				<textElement>
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<text><![CDATA[1.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6c440b43-30f9-496e-b01a-d6200e0b29d7" x="124" y="42" width="431" height="20"/>
+				<textElement>
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<text><![CDATA[Nama		: ......................................................................................................]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6c440b43-30f9-496e-b01a-d6200e0b29d7" x="124" y="62" width="431" height="20"/>
+				<textElement>
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<text><![CDATA[Pangkat/NIP	: ......................................................................................................]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6c440b43-30f9-496e-b01a-d6200e0b29d7" x="124" y="82" width="431" height="20"/>
+				<textElement>
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<text><![CDATA[Jabatan		: ......................................................................................................]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3acb3203-1b24-41ee-b26e-f7a3ffea5da4" x="100" y="102" width="24" height="20"/>
+				<textElement>
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<text><![CDATA[2.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6c440b43-30f9-496e-b01a-d6200e0b29d7" x="124" y="102" width="431" height="20"/>
+				<textElement>
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<text><![CDATA[Nama		: ......................................................................................................]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6c440b43-30f9-496e-b01a-d6200e0b29d7" x="124" y="142" width="431" height="20"/>
+				<textElement>
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<text><![CDATA[Jabatan	: ......................................................................................................]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6c440b43-30f9-496e-b01a-d6200e0b29d7" x="124" y="122" width="431" height="20"/>
+				<textElement>
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<text><![CDATA[Pangkat/NIP	: ......................................................................................................]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3d947a8f-eabd-47e1-b731-1aa76e019fc9" x="0" y="173" width="100" height="20"/>
+				<textElement>
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<text><![CDATA[Untuk		:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6c440b43-30f9-496e-b01a-d6200e0b29d7" x="124" y="173" width="431" height="20"/>
+				<textElement>
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<text><![CDATA[Mengikuti perkembangan penyidikan.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3acb3203-1b24-41ee-b26e-f7a3ffea5da4" x="100" y="173" width="24" height="20"/>
+				<textElement>
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<text><![CDATA[1.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6c440b43-30f9-496e-b01a-d6200e0b29d7" x="124" y="193" width="431" height="37"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<text><![CDATA[Melakukan penelitian hasil penyidikan atas nama tersangka  ................................................................................................................. tersebut.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3acb3203-1b24-41ee-b26e-f7a3ffea5da4" x="100" y="193" width="24" height="20"/>
+				<textElement>
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<text><![CDATA[2.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6c440b43-30f9-496e-b01a-d6200e0b29d7" x="124" y="230" width="431" height="20"/>
+				<textElement>
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<text><![CDATA[Melakukan penelitian SP-3 dari penyidik.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3acb3203-1b24-41ee-b26e-f7a3ffea5da4" x="100" y="230" width="24" height="20"/>
+				<textElement>
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<text><![CDATA[3.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6c440b43-30f9-496e-b01a-d6200e0b29d7" x="296" y="266" width="259" height="20"/>
+				<textElement>
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<text><![CDATA[Dikeluarkan di	: .................................................]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6c440b43-30f9-496e-b01a-d6200e0b29d7" x="296" y="286" width="259" height="20"/>
+				<textElement>
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<text><![CDATA[Pada tanggal	: ..................................................]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6c440b43-30f9-496e-b01a-d6200e0b29d7" x="310" y="317" width="234" height="20"/>
+				<textElement>
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<text><![CDATA[...................................................................*)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6c440b43-30f9-496e-b01a-d6200e0b29d7" x="310" y="384" width="234" height="20"/>
+				<textElement>
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<text><![CDATA[.........................................................................]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="5555f1d4-c5f6-4f95-a214-518ddc5bfd77" x="310" y="399" width="208" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="bbe7486e-2f05-47cf-b220-37079653f4bb" x="310" y="404" width="108" height="20"/>
+				<textElement>
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<text><![CDATA[Nama/pangkat/NIP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2163c5d9-e006-4b88-adf8-7f62add99ac7" x="0" y="454" width="65" height="20"/>
+				<textElement>
+					<font fontName="Serif" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tembusan:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ef796f7c-164d-48e1-8924-85c54181261b" x="0" y="474" width="196" height="20"/>
+				<textElement>
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<text><![CDATA[1. YTH KETUA PN ..........................]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ef796f7c-164d-48e1-8924-85c54181261b" x="0" y="494" width="196" height="20"/>
+				<textElement>
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<text><![CDATA[2. YTH...............................................]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9206b5cb-0fc3-4aa7-87ca-cca19e1bcae7" x="50" y="514" width="93" height="16"/>
+				<textElement>
+					<font fontName="Serif" size="11"/>
+				</textElement>
+				<text><![CDATA[(Instansi Penyidik)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ef796f7c-164d-48e1-8924-85c54181261b" x="0" y="530" width="196" height="20"/>
+				<textElement>
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<text><![CDATA[3. A R S I P]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9206b5cb-0fc3-4aa7-87ca-cca19e1bcae7" x="0" y="578" width="278" height="16"/>
+				<textElement>
+					<font fontName="Serif" size="11"/>
+				</textElement>
+				<text><![CDATA[*) Diisi dengan jabatan struktural yang memberi perintah]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="508f22c7-b443-46b5-b90c-1f8ae9cca6c5" x="124" y="206" width="336" height="20"/>
+				<textElement>
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nama}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="8cdc2f47-b0b3-4bd1-aa27-ca93f48f4e90" x="383" y="265" width="172" height="20"/>
+				<textElement>
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dikeluarkan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="27738821-64a7-44e6-86ff-d4699b30b058" x="408" y="286" width="52" height="20"/>
+				<textElement>
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tgl_dikeluarkan}.getMonth() == 0 ?
+                    "Januari" : $F{tgl_dikeluarkan}.getMonth() == 1 ?
+                    "Februari" : $F{tgl_dikeluarkan}.getMonth() == 2 ?
+                    "Maret" : $F{tgl_dikeluarkan}.getMonth() == 3 ?
+                    "April" : $F{tgl_dikeluarkan}.getMonth() == 4 ?
+                    "Mei" : $F{tgl_dikeluarkan}.getMonth() == 5 ?
+                    "Juni" : $F{tgl_dikeluarkan}.getMonth() == 6 ?
+                    "Juli" : $F{tgl_dikeluarkan}.getMonth() == 7 ?
+                    "Agustus" : $F{tgl_dikeluarkan}.getMonth() == 8 ?
+                    "September" : $F{tgl_dikeluarkan}.getMonth() == 9 ?
+                    "Oktober"  : $F{tgl_dikeluarkan}.getMonth() == 10 ?
+                    "November"  : $F{tgl_dikeluarkan}.getMonth() == 11 ?
+                    "Desember" : "Unknown"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="df9fbd4a-f931-4c20-956a-5f54384ba81e" x="386" y="286" width="22" height="20"/>
+				<textElement>
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd").format(new Integer($F{tgl_dikeluarkan}.getDate()))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="f7547565-7ebe-4483-bf09-1fa399a801db" x="460" y="286" width="29" height="20"/>
+				<textElement>
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyy").format($F{tgl_dikeluarkan})]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

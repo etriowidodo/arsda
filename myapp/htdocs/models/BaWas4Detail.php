@@ -1,0 +1,64 @@
+<?php
+
+namespace app\models;
+
+use Yii;
+
+/**
+ * This is the model class for table "was.ba_was_4_detail".
+ *
+ * @property string $id_ba_was_4_detail
+ * @property string $id_ba_was_4
+ * @property string $pendapat
+ * @property integer $is_deleted
+ * @property integer $created_by
+ * @property string $created_ip
+ * @property string $created_time
+ * @property string $updated_ip
+ * @property integer $updated_by
+ * @property string $updated_time
+ */
+class BaWas4Detail extends \yii\db\ActiveRecord
+{
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return 'was.ba_was_4_detail';
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['id_ba_was_4_detail'], 'required'],
+            [['is_deleted', 'created_by', 'updated_by'], 'integer'],
+            [['created_time', 'updated_time'], 'safe'],
+            [['id_ba_was_4_detail', 'id_ba_was_4'], 'string', 'max' => 20],
+            [['pendapat'], 'string', 'max' => 2000],
+            [['created_ip', 'updated_ip'], 'string', 'max' => 15]
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id_ba_was_4_detail' => 'Id Ba Was 4 Detail',
+            'id_ba_was_4' => 'Id Ba Was 4',
+            'pendapat' => 'Pendapat',
+            'is_deleted' => 'Is Deleted',
+            'created_by' => 'Created By',
+            'created_ip' => 'Created Ip',
+            'created_time' => 'Created Time',
+            'updated_ip' => 'Updated Ip',
+            'updated_by' => 'Updated By',
+            'updated_time' => 'Updated Time',
+        ];
+    }
+}

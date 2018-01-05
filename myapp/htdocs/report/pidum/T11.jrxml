@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="T11" language="groovy" pageWidth="800" pageHeight="1200" columnWidth="760" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f81b43bf-6dae-44cf-8e66-071c1f977da5">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="dataset1" uuid="c21b08b8-9f1b-4cf3-9984-17ff46867a86">
+		<parameter name="idperkara" class="java.lang.String"/>
+		<queryString>
+			<![CDATA[select tembusan.keterangan
+from pidum.pdm_t11 t11
+inner join pidum.pdm_tembusan tembusan ON ( tembusan.id_table =t11.id_t11)
+where t11.id_perkara= $P{idperkara}
+and tembusan.kode_table='T-11']]>
+		</queryString>
+		<field name="keterangan" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="id_perkara" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select a.no_surat,
+b.nama,
+b.nip,
+ b.pangkat,
+ d.inst_nama
+
+from pidum.pdm_t11 a
+inner join pidum.pdm_jaksa_saksi b ON a.id_perkara = b.id_perkara
+inner join pidum.pdm_spdp c ON a.id_perkara = c.id_perkara
+inner join kepegawaian.kp_inst_satker d ON c.wilayah_kerja = d.inst_satkerkd]]>
+	</queryString>
+	<field name="no_surat" class="java.lang.String"/>
+	<field name="nama" class="java.lang.String"/>
+	<field name="nip" class="java.lang.String"/>
+	<field name="pangkat" class="java.lang.String"/>
+	<field name="inst_nama" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="138" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="1b0daabb-57d4-4255-a219-32a663ba86c5" x="195" y="69" width="349" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[SURAT PERINTAH PEMERIKSAAN KESEHATAN TAHANAN ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5290fade-5855-45b3-963f-8e4dfdddd0fe" x="251" y="91" width="45" height="20"/>
+				<textElement/>
+				<text><![CDATA[NOMOR]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="44ea5286-1c10-4c77-a5cf-21f57931ef08" x="301" y="91" width="189" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{no_surat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="12b3b24f-d02e-4275-a447-c3cd5f13878e" x="0" y="2" width="221" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{inst_nama}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="4c081e21-d58b-4f0b-8940-21cbf9d7754b" x="221" y="118" width="269" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{inst_nama}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="194632c4-563c-4b83-a0f0-b98cacb2b2ff" x="0" y="137" width="760" height="1"/>
+			</line>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="756" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="9defaef1-a6a6-4257-88e2-32380c4b22a1" x="1" y="10" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Dasar ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="28d1c189-8f1e-4413-aa69-db6672837770" x="135" y="16" width="213" height="20"/>
+				<textElement/>
+				<text><![CDATA[1.  Surat perintah penahanan kepala ...... *)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="11cbab45-199d-4c40-b920-a9ecf2b49e19" x="135" y="41" width="273" height="20"/>
+				<textElement/>
+				<text><![CDATA[2. ............................]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="881df1d3-b752-4842-8aa5-98646095915c" x="4" y="105" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Pertimbangan ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="03e884eb-48a5-4d1b-9811-53f6c5b4d6fd" x="138" y="110" width="520" height="36"/>
+				<textElement/>
+				<text><![CDATA[- Hasil Pemeriksaan Kesehatan tersangka / terdakwa  yang dibuat oleh dokter............. (lembaga)...........(kejaksaan).......(puskesmas).]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="062881f0-f0fa-46f6-80b8-41af1011746f" x="139" y="158" width="251" height="20"/>
+				<textElement/>
+				<text><![CDATA[- Permintaan Penyidik / Penuntut Umum ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e9d8b7c7-ec8f-4c45-9850-19654c7c211e" x="248" y="187" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[MEMERINTAHKAN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="088496db-d3af-4d66-911d-81db9005e659" x="0" y="240" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Kepada ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1404916c-8b29-4eb8-9673-ef6467b646bf" x="138" y="224" width="520" height="20"/>
+				<textElement/>
+				<text><![CDATA[Petugas kejaksaan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ab2a82dc-e048-49d1-ad08-f37001bd4070" x="138" y="260" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Nama]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a0e12522-aff6-4e61-852b-3876973cc185" x="138" y="283" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Pangkat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a80907c7-7048-4859-95fb-eabaf43373aa" x="138" y="306" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Nip / NRP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6ee19ccc-f60e-460e-a856-1d923b52934d" x="4" y="344" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Untuk]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="506a97e9-b004-47b1-9f0e-3dac18abf542" x="131" y="345" width="296" height="20"/>
+				<textElement/>
+				<text><![CDATA[1. Memeriksakan Kesehatan tahanan tersebut ke Rumah Sakit]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="87fb8f0a-9065-4fb0-b0e0-618b4d21346a" x="132" y="373" width="548" height="20"/>
+				<textElement/>
+				<text><![CDATA[2. Mengembalikan Tahanan tersebut ke tempat tahanan segera setelah selesai pemeriksaan.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="cda1a7ee-3b66-42de-bec0-381a21b81cf7" x="132" y="399" width="548" height="20"/>
+				<textElement/>
+				<text><![CDATA[3.  Membuat berita acara pelaksanaan surat perintah ini ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="45adc580-0046-4143-a7d5-06d77b03ca38" x="4" y="460" width="163" height="20"/>
+				<textElement/>
+				<text><![CDATA[Kepada : Ybs untuk dilaksanakan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6dad23bd-c870-44eb-b0dc-47b1f6bf091b" x="544" y="455" width="72" height="20"/>
+				<textElement/>
+				<text><![CDATA[Di keluarkan di]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="463a8460-51cc-4cc9-b6c2-bcca3626b9fb" x="544" y="478" width="72" height="20"/>
+				<textElement/>
+				<text><![CDATA[Pada tanggal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6aa658a0-b539-41fe-ba85-fe947e9966ac" x="544" y="583" width="100" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[(...................)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="abe93488-3157-4d8d-b7f3-4f7475f2ff7e" x="12" y="509" width="131" height="20"/>
+				<textElement/>
+				<text><![CDATA[Tembusan:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="034a3b03-5fe1-40c3-823a-97dbeaa4c7a6" x="12" y="604" width="143" height="20"/>
+				<textElement/>
+				<text><![CDATA[1. Jaksa Penyidik / PU]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1bd6323f-3fce-4fa8-93a1-6d4117a9d88f" x="12" y="628" width="143" height="20"/>
+				<textElement/>
+				<text><![CDATA[2. keluarga Tahanan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e8653c01-2323-441c-ab03-9233fd343110" x="12" y="648" width="143" height="20"/>
+				<textElement/>
+				<text><![CDATA[3. ..................]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b6533303-82c2-4a14-9710-db7ff52cbe23" x="12" y="668" width="143" height="20"/>
+				<textElement/>
+				<text><![CDATA[4. Arsip]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9d3716ec-d894-4778-a5aa-369060e1a631" x="12" y="688" width="216" height="65"/>
+				<textElement/>
+				<text><![CDATA[*) Diisi kejaksaan Negeri/ Tinggi .............. atau Jaksa Agung RI . dalam perkara pelanggaran HAM yang berat, (kop surat,penandatanganan surat menyesuaikan T-1)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="29e21cff-f47a-4ed0-ab2d-06dd757cf4aa" x="558" y="16" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Nomor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c2fc2cbd-5c49-43b3-918a-c67390d4597a" x="364" y="16" width="126" height="20"/>
+				<textElement/>
+				<text><![CDATA[ / Jaksa Agung RI Tanggal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="0024576a-6f82-418e-ae7c-d1a73d7c19dc" x="490" y="344" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[dan / spesialis]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="528c819d-cb47-49b6-98f0-937eb1025112" x="626" y="345" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[pada tanggal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="46a7fec6-9bc9-434d-a127-7c8cdd69f04b" x="616" y="509" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[/ JAKSA AGUNG RI]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="0b35f422-ac75-4fec-ac9b-6a9899128a86" x="290" y="260" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{nama}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="57004bfa-6494-40fd-b959-4b173fb42975" x="290" y="285" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{pangkat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="e0534bf7-4feb-4edc-893a-9ac0be39f4d2" x="290" y="308" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{nip}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="dd914975-91a4-462c-bf34-81b89a86e766" x="427" y="509" width="163" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{inst_nama}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement uuid="957ee030-b0c6-4ff8-a87e-7cd18504d258" x="12" y="533" width="209" height="50"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="dataset1" uuid="9085ee7b-807d-41d6-a9ab-e7ad5d3bbb23">
+						<datasetParameter name="idperkara">
+							<datasetParameterExpression><![CDATA[$P{id_perkara}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="50" width="209">
+						<textField>
+							<reportElement uuid="2b6a162a-4528-413f-be4e-cc6ad6ca5c12" x="0" y="0" width="100" height="20"/>
+							<textElement/>
+							<textFieldExpression><![CDATA[$F{keterangan}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="6" splitType="Stretch"/>
+	</pageFooter>
+</jasperReport>
